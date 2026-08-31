@@ -10,11 +10,74 @@ const MAX_DETAIL_LEN = 300;
 const MAX_ID_LEN = 60;
 const DAY_IDS = ["day1","day2","day3","day4","day5"];
 
+// 준비물 시드 — 2026.6 발리/싱가포르 여행 리스트 기반, 간사이(9월·도보 많음·온천숙소·쇼핑) 기준으로 각색
+// 제외한 항목: 수영복 · 아쿠아슈즈 · 휴대폰 방수팩 · 샌달 · 모기패치 · 벌레물림약 ·
+//              바디스크럽 · 알로에팩 · 입욕제(대욕장 있음) · 수면베개/안대(비행 1시간 45분)
+const DEFAULT_PACK_HYUNGIN = [
+  { id: "pk-h-1",  label: "여권" },
+  { id: "pk-h-2",  label: "주민등록증" },
+  { id: "pk-h-3",  label: "트래블 월릿 (엔화 충전)" },
+  { id: "pk-h-4",  label: "항공 e티켓 + 하루카/라피트 QR 캡처" },
+  { id: "pk-h-5",  label: "일본용 변환 어댑터 (A타입) ★필수" },
+  { id: "pk-h-6",  label: "아이폰 충전기" },
+  { id: "pk-h-7",  label: "갤럭시 충전기" },
+  { id: "pk-h-8",  label: "보조배터리 (기내 반입 · 위탁 금지)" },
+  { id: "pk-h-9",  label: "스위치2 (하루카/라피트 이동시간용)" },
+  { id: "pk-h-10", label: "옷 5일치" },
+  { id: "pk-h-11", label: "팬티 5일치" },
+  { id: "pk-h-12", label: "얇은 셔츠 및 가디건 (냉방 대비)" },
+  { id: "pk-h-13", label: "비행기 탑승용 편한 옷 1벌" },
+  { id: "pk-h-14", label: "여분 신발 (하루 2만보 대비)" },
+  { id: "pk-h-15", label: "모자 1개" },
+  { id: "pk-h-16", label: "옷 담는 지퍼백" },
+  { id: "pk-h-17", label: "여행용 세면도구 세트 (칫솔, 치약)" },
+  { id: "pk-h-18", label: "헤어 스프레이" },
+  { id: "pk-h-19", label: "올인원 로션" },
+  { id: "pk-h-20", label: "선크림" },
+  { id: "pk-h-21", label: "손소독제" },
+  { id: "pk-h-22", label: "물티슈" },
+  { id: "pk-h-23", label: "마스크" },
+  { id: "pk-h-24", label: "지사제 및 소화제 (상비약)" },
+  { id: "pk-h-25", label: "멀미약" },
+  { id: "pk-h-26", label: "니플패처 (도보 많음)" },
+  { id: "pk-h-27", label: "접이식 우산" },
+  { id: "pk-h-28", label: "대형 캐리어 (쇼핑 여유분 남기기)" },
+  { id: "pk-h-29", label: "에코백 (일본 봉투 유료)" }
+];
+
+const DEFAULT_PACK_JUNGA = [
+  { id: "pk-j-1",  label: "여권" },
+  { id: "pk-j-2",  label: "주민등록증" },
+  { id: "pk-j-3",  label: "하나카드 (엔화 트래블로그)" },
+  { id: "pk-j-4",  label: "화장품" },
+  { id: "pk-j-5",  label: "선크림" },
+  { id: "pk-j-6",  label: "양산 (9월 초 33°C)" },
+  { id: "pk-j-7",  label: "바디로션" },
+  { id: "pk-j-8",  label: "고데기 (일본 100V · 듀얼볼트 확인)" },
+  { id: "pk-j-9",  label: "옷 5일치" },
+  { id: "pk-j-10", label: "팬티 5일치" },
+  { id: "pk-j-11", label: "얇은 가디건 (냉방 대비)" },
+  { id: "pk-j-12", label: "비행기 탑승용 편한 옷 1벌" },
+  { id: "pk-j-13", label: "신발 2개 (하루 2만보 대비)" },
+  { id: "pk-j-14", label: "모자 1개" },
+  { id: "pk-j-15", label: "옷 담는 지퍼백" },
+  { id: "pk-j-16", label: "스위치2" },
+  { id: "pk-j-17", label: "약" },
+  { id: "pk-j-18", label: "안경" },
+  { id: "pk-j-19", label: "렌즈" },
+  { id: "pk-j-20", label: "생리용품" },
+  { id: "pk-j-21", label: "접이식 우산" },
+  { id: "pk-j-22", label: "소형 캐리어" },
+  { id: "pk-j-23", label: "에코백 (일본 봉투 유료)" }
+];
+
 const DEFAULT_PREP = [
   { id: "prep-default-1",  label: "하루카 QR 티켓 캡처",          detail: "예약 완료 #BSQ675585 · 2인 ₩37,200 · E-티켓(QR 입장) · 9.4 14:16 KIX → 15:35 교토역 · 오프라인 대비 스크린샷", checked: true },
   { id: "prep-default-2",  label: "라피트 QR/바코드 캡처",        detail: "좌석 지정 완료 KLOOK-20260831-3WGG · β51호 난바 15:35 → KIX 16:12 · 01호차 27·28번 · 이용개시 전 앱에서 편 변경 가능", checked: true },
   { id: "prep-default-3",  label: "Visit Japan Web 사전 등록",    detail: "입국 속도를 좌우 · 2인 각각 등록 · QR 캡처해두기", checked: false },
   { id: "prep-default-4",  label: "인천공항 예약주차",            detail: "출차 3일 전까지 · 5일 45,000원 (감면 대상이면 22,500원)", checked: false },
+  { id: "prep-default-4b", label: "유심/이심 준비",               detail: "일본 eSIM 또는 로밍 · 2인 각각 · 출발 전 개통 확인", checked: false },
+  { id: "prep-default-4c", label: "여행자 보험 가입",             detail: "일본 커버 · 9월 초 태풍 시즌이라 항공 지연/결항 보상 항목 확인", checked: false },
   { id: "prep-default-5",  label: "기온탄토 디너 오픈 시각 확인",  detail: "오픈런 확정 (예약 X) · 1일차 9.4 (금) 17:30 목표 · 구글맵/현장 확인 후 10~15분 전 도착 · 오픈이 18:00이면 뒤 일정 30분씩 밀기", checked: false },
   { id: "prep-default-6",  label: "타이쇼 하나나 오픈 시각 확인",  detail: "오픈런 확정 (예약 X) · 2일차 9.5 (토) 11:00 오픈 기준 10:20 줄서기 · 토요일이라 일찍", checked: false },
   { id: "prep-default-7",  label: "접이식 우산 2개",              detail: "1·3·5일차 강수 60~70% · 캐리어에 미리 넣기", checked: false },
@@ -74,16 +137,21 @@ function sanitizeNote(it) {
 
 function normalize(raw) {
   const r = raw && typeof raw === "object" ? raw : {};
+  // 배열이 명시돼 있으면 그대로 사용(빈 배열 = 사용자가 다 지운 것),
+  // 없으면서 저장된 적도 없는 첫 로드일 때만 시드 제공
+  const saved = r.version === 1;
   const packingSrc = r.packing || {};
+  const seedPack = (arr, defaults) =>
+    Array.isArray(arr) ? arr.map(sanitizePack).filter(Boolean)
+      : (saved ? [] : defaults.map((d) => ({ ...d, checked: false })));
   const packing = {
-    hyungin: Array.isArray(packingSrc.hyungin) ? packingSrc.hyungin.map(sanitizePack).filter(Boolean) : [],
-    junga: Array.isArray(packingSrc.junga) ? packingSrc.junga.map(sanitizePack).filter(Boolean) : []
+    hyungin: seedPack(packingSrc.hyungin, DEFAULT_PACK_HYUNGIN),
+    junga: seedPack(packingSrc.junga, DEFAULT_PACK_JUNGA)
   };
-  // prep: 명시된 배열이 있으면 그대로, 저장된 적 없는 첫 로드면 시드 제공
   let prep;
   if (Array.isArray(r.prep)) {
     prep = r.prep.map(sanitizePrep).filter(Boolean);
-  } else if (r.version === 1) {
+  } else if (saved) {
     prep = [];
   } else {
     prep = DEFAULT_PREP.slice();
