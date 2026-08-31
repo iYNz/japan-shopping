@@ -1,0 +1,2799 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kansai · 교토 & 오사카 쇼핑</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root {
+    --bg-white: #ffffff;
+    --bg-light: #f5f5f7;
+    --bg-dark: #000000;
+    --text-primary: #1d1d1f;
+    --text-secondary: #6e6e73;
+    --text-tertiary: #86868b;
+    --text-on-dark: #f5f5f7;
+    --text-on-dark-secondary: #a1a1a6;
+    --accent: #0071e3;
+    --accent-hover: #0077ed;
+    --border: #d2d2d7;
+    --check-fill: #1d1d1f;
+    --shadow-card: 0 4px 20px rgba(0,0,0,0.04);
+    --shadow-card-hover: 0 12px 40px rgba(0,0,0,0.08);
+    --radius-lg: 28px;
+    --pink: #f9a8d4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    background: var(--bg-white); color: var(--text-primary);
+    line-height: 1.47059; letter-spacing: -0.022em;
+  }
+
+  .nav {
+    position: sticky; top: 0; z-index: 9999;
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .nav-inner {
+    max-width: 1024px; margin: 0 auto;
+    padding: 0 22px; height: 44px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 14px;
+  }
+  .nav-brand { font-weight: 600; font-size: 14px; }
+  .nav-links { display: flex; gap: 22px; list-style: none; }
+  .nav-links a { color: var(--text-primary); text-decoration: none; font-size: 12px; opacity: 0.85; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-progress { font-size: 12px; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+  .nav-progress strong { color: var(--text-primary); font-weight: 600; }
+  .nav-toggle {
+    display: none;
+    background: none; border: none;
+    width: 34px; height: 34px;
+    align-items: center; justify-content: center;
+    cursor: pointer;
+    color: var(--text-primary);
+    padding: 0;
+    border-radius: 8px;
+    transition: background 0.15s;
+    font-family: inherit;
+  }
+  .nav-toggle:hover { background: rgba(0,0,0,0.05); }
+  .nav-toggle:active { background: rgba(0,0,0,0.08); }
+  .nav-chevron {
+    width: 18px; height: 18px;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    transition: transform 0.25s ease;
+  }
+  .nav.nav-open .nav-chevron { transform: rotate(180deg); }
+
+  .hero {
+    background: var(--bg-dark); color: var(--text-on-dark);
+    padding: 88px 22px 64px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 18% 25%, rgba(249,168,212,0.13), transparent 42%),
+      radial-gradient(circle at 82% 75%, rgba(147,197,253,0.10), transparent 45%);
+    pointer-events: none;
+  }
+  .hero-eyebrow { font-size: 19px; font-weight: 600; color: var(--pink); margin-bottom: 8px; }
+  .hero-title {
+    font-size: clamp(52px, 8.4vw, 92px); font-weight: 700;
+    letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 14px;
+    background: linear-gradient(180deg, #ffffff 0%, #c8c8c8 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-subtitle { font-size: clamp(22px, 3vw, 30px); font-weight: 600; margin-bottom: 28px; }
+  .hero-meta {
+    display: inline-flex; flex-wrap: wrap; justify-content: center;
+    color: var(--text-on-dark-secondary); font-size: 16px;
+  }
+  .hero-meta > span { padding: 0 16px; display: inline-flex; align-items: center; }
+  .hero-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-on-dark-secondary); padding: 0; }
+  .hero-cta { margin-top: 36px; display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    border: none; border-radius: 980px; padding: 12px 22px;
+    font-family: inherit; font-size: 14px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s ease; letter-spacing: -0.01em;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-ghost { background: transparent; color: var(--accent); }
+  .btn-ghost:hover { text-decoration: underline; }
+
+  .highlights { background: var(--bg-light); padding: 64px 22px; }
+  .highlights-inner {
+    max-width: 980px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 32px; text-align: center;
+  }
+  .highlight-value { font-size: clamp(40px, 5vw, 56px); font-weight: 700; letter-spacing: -0.035em; line-height: 1; margin-bottom: 8px; }
+  .highlight-label { font-size: 14px; color: var(--text-secondary); font-weight: 500; }
+
+  /* Flight strip */
+  .flights {
+    background: var(--bg-dark); color: var(--text-on-dark);
+    padding: 56px 22px;
+  }
+  .flights-inner { max-width: 980px; margin: 0 auto; }
+  .flights-title {
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--pink); font-weight: 600; margin-bottom: 24px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .flights-title::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--pink); }
+  .flight-row {
+    display: grid;
+    grid-template-columns: 80px 1fr auto 1fr auto;
+    gap: 16px; align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 14px;
+  }
+  .flight-row:last-child { border-bottom: none; }
+  .flight-code { font-weight: 700; color: white; font-size: 13px; letter-spacing: 0.02em; }
+  .flight-leg { color: rgba(255,255,255,0.85); }
+  .flight-leg strong { color: white; font-weight: 600; }
+  .flight-arrow { color: rgba(255,255,255,0.4); font-size: 18px; }
+  .flight-time {
+    color: white; font-variant-numeric: tabular-nums;
+    font-size: 13px; font-weight: 600;
+    text-align: right;
+  }
+  .flight-time small { display: block; color: rgba(255,255,255,0.6); font-size: 11px; font-weight: 400; }
+  .flights-foot {
+    margin-top: 20px; padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-size: 12px; color: rgba(255,255,255,0.6);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  .flights-foot strong { color: #fbbf24; font-weight: 700; }
+
+  .section { padding: 100px 22px; }
+  .section-alt { background: var(--bg-light); }
+  .section-inner { max-width: 980px; margin: 0 auto; }
+  .section-eyebrow { font-size: 17px; font-weight: 600; color: var(--accent); margin-bottom: 8px; }
+  .section-title { font-size: clamp(40px, 5.5vw, 64px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 18px; }
+  .section-title em { font-style: normal; color: var(--text-tertiary); }
+  .section-lead { font-size: clamp(19px, 2.2vw, 24px); color: var(--text-secondary); max-width: 720px; line-height: 1.4; }
+
+  .day {
+    background: var(--bg-white); border-radius: var(--radius-lg);
+    padding: 40px 36px; box-shadow: var(--shadow-card);
+    transition: box-shadow 0.3s ease;
+  }
+  .section-alt .day { background: var(--bg-white); }
+  .day:hover { box-shadow: var(--shadow-card-hover); }
+  .day-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+    padding-bottom: 24px; border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .day-title-block { flex: 1; min-width: 240px; }
+  .day-eyebrow { font-size: 13px; font-weight: 600; color: var(--accent); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 6px; }
+  .day-title { font-size: clamp(28px, 3.5vw, 40px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 4px; }
+  .day-subtitle { font-size: 17px; color: var(--text-secondary); }
+  .day-progress { text-align: right; min-width: 120px; }
+  .day-progress-pct { font-size: 32px; font-weight: 700; letter-spacing: -0.025em; font-variant-numeric: tabular-nums; line-height: 1; }
+  .day-progress-bar { width: 120px; height: 4px; background: var(--border); border-radius: 999px; margin-top: 10px; overflow: hidden; margin-left: auto; }
+  .day-progress-fill { height: 100%; background: var(--text-primary); width: 0; transition: width 0.4s ease; border-radius: 999px; }
+
+  .day-note {
+    background: linear-gradient(0deg, rgba(255,184,77,0.08), rgba(255,184,77,0.08)), var(--bg-light);
+    border-left: 3px solid #f0a93b;
+    padding: 14px 18px; border-radius: 10px;
+    font-size: 13.5px; color: #5a3e0d;
+    margin-bottom: 24px; line-height: 1.55;
+  }
+  .day-note strong { color: #3a2a08; font-weight: 600; }
+  .day-note.confirmed {
+    border-left-color: #10b981;
+    background: linear-gradient(0deg, rgba(16,185,129,0.06), rgba(16,185,129,0.06)), var(--bg-light);
+    color: #064e3b;
+  }
+  .day-note.confirmed strong { color: #022c22; }
+  .day-note.rain {
+    border-left-color: #3b82f6;
+    background: linear-gradient(0deg, rgba(59,130,246,0.07), rgba(59,130,246,0.07)), var(--bg-light);
+    color: #1e3a8a;
+  }
+  .day-note.rain strong { color: #172554; }
+
+  .timeline { list-style: none; }
+  .item {
+    display: grid; grid-template-columns: 88px 28px 1fr;
+    gap: 18px; padding: 18px 0; align-items: start;
+    border-bottom: 1px solid #f0f0f2;
+  }
+  .item:last-child { border-bottom: none; }
+  .item-time { font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; padding-top: 4px; }
+  .item-check { position: relative; width: 24px; height: 24px; margin-top: 2px; }
+  .item-check input { position: absolute; opacity: 0; inset: 0; cursor: pointer; width: 100%; height: 100%; z-index: 2; }
+  .item-check .box {
+    position: absolute; inset: 0;
+    border: 1.5px solid var(--border); border-radius: 50%;
+    background: transparent; transition: all 0.2s ease;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .item-check .box svg { width: 14px; height: 14px; stroke: white; stroke-width: 3; fill: none; opacity: 0; transform: scale(0.6); transition: all 0.2s ease; }
+  .item-check input:hover + .box { border-color: var(--text-tertiary); }
+  .item-check input:checked + .box { background: var(--check-fill); border-color: var(--check-fill); }
+  .item-check input:checked + .box svg { opacity: 1; transform: scale(1); }
+  .item-title { font-size: 17px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 4px; transition: color 0.2s, text-decoration 0.2s; }
+  .item-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
+  .item-desc strong { color: var(--text-primary); font-weight: 600; }
+  .item-meta { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .item-tag {
+    display: inline-flex; align-items: center;
+    padding: 3px 10px; background: var(--bg-light);
+    border-radius: 999px; font-size: 12px;
+    color: var(--text-secondary); font-weight: 500;
+  }
+  .item-tag.hot { background: #ffe0e0; color: #b91c1c; }
+  .item-tag.must { background: #e0f0ff; color: #1d4ed8; }
+  .item-tag.confirmed { background: #d1fae5; color: #065f46; }
+  .item-tag.shop { background: #fce7f3; color: #9d174d; }
+  .item.checked .item-title { color: var(--text-tertiary); text-decoration: line-through; }
+  .item.checked .item-desc, .item.checked .item-time { color: var(--text-tertiary); }
+
+  /* SHOPPING MAP CARD */
+  .menu-pick {
+    margin-top: 28px; padding: 40px 36px;
+    background: linear-gradient(135deg, #3b1e54 0%, #6b2d5c 58%, #a13d63 100%);
+    border-radius: 22px; color: white;
+    position: relative; overflow: hidden;
+  }
+  .menu-pick.route {
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 55%, #2c5364 100%);
+  }
+  .menu-pick.route .menu-eyebrow,
+  .menu-pick.route .menu-col h4,
+  .menu-pick.route .flights-title { color: #7dd3fc; }
+  .menu-pick.route .menu-col h4::before { background: #7dd3fc; }
+  .menu-pick.route .budget-cell .b-label { color: rgba(125,211,252,0.85); }
+  .menu-list .price .fix { color: #4ade80; font-weight: 700; font-size: 12px; display: block; }
+  .menu-list .price .warn { color: #fbbf24; font-weight: 700; font-size: 12px; display: block; }
+  .menu-pick::before {
+    content: ''; position: absolute;
+    top: -50%; right: -20%;
+    width: 60%; height: 200%;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.07) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .menu-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    margin-bottom: 24px;
+  }
+  .menu-head-l { display: flex; flex-direction: column; gap: 4px; }
+  .menu-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink); }
+  .menu-brand { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+  .menu-tagline { font-size: 12px; color: rgba(255,255,255,0.7); letter-spacing: 0.04em; }
+  .menu-note { font-size: 12px; color: rgba(255,255,255,0.6); text-align: right; max-width: 240px; line-height: 1.5; }
+
+  .budget {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    margin-bottom: 28px; padding: 18px 20px;
+    background: rgba(0,0,0,0.18); border-radius: 14px;
+  }
+  .budget-cell { text-align: center; }
+  .budget-cell .b-label { font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(249,168,212,0.85); margin-bottom: 4px; }
+  .budget-cell .b-amt { font-size: 17px; font-weight: 700; color: white; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+  .budget-cell.total .b-amt { color: #fbbf24; }
+  .budget-cell .b-amt small { display: block; font-size: 10px; font-weight: 400; color: rgba(255,255,255,0.5); margin-top: 2px; letter-spacing: 0.02em; }
+
+  .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 36px; }
+  .menu-col h4 {
+    font-size: 11px; letter-spacing: 0.16em;
+    color: var(--pink); font-weight: 700;
+    margin-bottom: 14px; text-transform: uppercase;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .menu-col h4::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--pink); }
+  .menu-col h4 .col-total { margin-left: auto; color: #fbbf24; font-size: 11px; letter-spacing: 0.02em; font-weight: 700; }
+  .menu-list { list-style: none; }
+  .menu-list li {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 12px; padding: 9px 0;
+    border-bottom: 1px dashed rgba(255,255,255,0.1);
+    font-size: 14px;
+    align-items: baseline;
+  }
+  .menu-list li:last-child { border-bottom: none; }
+  .menu-list .name { color: rgba(255,255,255,0.92); line-height: 1.35; }
+  .menu-list .name small { display: block; color: rgba(255,255,255,0.5); font-size: 11.5px; margin-top: 2px; line-height: 1.3; }
+  .menu-list .price { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .menu-list .price .krw { color: #fbbf24; font-weight: 700; font-size: 13.5px; display: block; }
+  .menu-list .price .idr { color: rgba(255,255,255,0.45); font-size: 11px; display: block; margin-top: 1px; }
+  .menu-foot {
+    margin-top: 24px; padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1.6;
+  }
+
+  /* BOOKINGS */
+  .bookings { padding: 100px 22px; background: var(--bg-light); }
+  .bookings-inner { max-width: 980px; margin: 0 auto; }
+
+  .bookings-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin: 32px 0 8px;
+  }
+  .stat-card {
+    background: var(--bg-white);
+    padding: 24px 20px;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: var(--shadow-card);
+  }
+  .stat-value { font-size: 32px; font-weight: 700; letter-spacing: -0.025em; line-height: 1; margin-bottom: 6px; font-variant-numeric: tabular-nums; }
+  .stat-value.green { color: #10b981; }
+  .stat-value.orange { color: #f59e0b; }
+  .stat-value.red { color: #ef4444; }
+  .stat-value.blue { color: #0071e3; }
+  .stat-value small { font-size: 0.45em; font-weight: 600; }
+  .stat-label { font-size: 13px; color: var(--text-secondary); font-weight: 500; }
+
+  .booking-group-title {
+    font-size: 13px; font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin: 48px 0 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .booking-group-title::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%;
+  }
+  .booking-group-title.confirmed::before { background: #10b981; }
+  .booking-group-title.recommended::before { background: #f59e0b; }
+  .booking-group-title.required::before { background: #ef4444; }
+
+  .booking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .booking-card {
+    background: var(--bg-white);
+    border-radius: 18px;
+    padding: 24px 22px 36px;
+    position: relative;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+  }
+  .booking-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+  .booking-card.confirmed { border-left-color: #10b981; }
+  .booking-card.recommended { border-left-color: #f59e0b; }
+  .booking-card.required { border-left-color: #ef4444; }
+  .booking-card.optional { border-left-color: #86868b; }
+
+  .booking-status {
+    position: absolute; top: 22px; right: 22px;
+    font-size: 10px; padding: 4px 9px;
+    border-radius: 999px; font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+  .booking-status.confirmed { background: #d1fae5; color: #065f46; }
+  .booking-status.recommended { background: #fef3c7; color: #92400e; }
+  .booking-status.required { background: #fee2e2; color: #991b1b; }
+  .booking-status.optional { background: #e5e7eb; color: #374151; }
+
+  .booking-city {
+    position: absolute; bottom: 14px; right: 22px;
+    font-size: 9.5px; color: var(--text-tertiary);
+    font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .booking-icon { font-size: 22px; margin-bottom: 8px; }
+  .booking-name {
+    font-size: 17px; font-weight: 700;
+    letter-spacing: -0.015em; margin-bottom: 6px;
+    padding-right: 80px; line-height: 1.25;
+  }
+  .booking-when {
+    font-size: 14px; color: var(--text-primary);
+    margin-bottom: 10px; font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .booking-when .day-of { color: var(--text-secondary); font-weight: 400; }
+  .booking-detail {
+    font-size: 12.5px; color: var(--text-secondary);
+    line-height: 1.5; margin-bottom: 6px;
+  }
+  .booking-note {
+    font-size: 12px; color: var(--text-tertiary);
+    line-height: 1.45;
+  }
+  .booking-id {
+    display: inline-block;
+    font-size: 10.5px;
+    color: var(--text-tertiary);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+    margin-top: 12px;
+    padding: 3px 8px;
+    background: var(--bg-light);
+    border-radius: 6px;
+    font-family: -apple-system, ui-monospace, monospace;
+  }
+
+  /* Checklist */
+  .checklist {
+    background: var(--bg-white);
+    border-radius: 18px;
+    padding: 14px 28px;
+    margin-top: 4px;
+    box-shadow: var(--shadow-card);
+  }
+  .check-item {
+    display: grid; grid-template-columns: 28px 1fr;
+    gap: 14px; padding: 16px 0;
+    border-bottom: 1px solid #f0f0f2;
+    align-items: start;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-item .item-check { margin-top: 1px; }
+  .check-content { padding-top: 1px; }
+  .check-label {
+    font-size: 14.5px; font-weight: 600;
+    margin-bottom: 3px; letter-spacing: -0.01em;
+    transition: color 0.2s, text-decoration 0.2s;
+  }
+  .check-detail {
+    font-size: 12.5px; color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-tertiary);
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+  }
+  .check-item.checked .check-detail { color: var(--text-tertiary); }
+
+  @media (max-width: 720px) {
+    .bookings { padding: 70px 18px; }
+    .booking-grid { grid-template-columns: 1fr; }
+    .booking-name { padding-right: 75px; }
+    .checklist { padding: 8px 20px; }
+  }
+
+  .cta-strip { text-align: center; padding: 100px 22px; background: var(--bg-light); }
+  .cta-title { font-size: clamp(36px, 5vw, 56px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 16px; line-height: 1.1; }
+  .cta-sub { font-size: 21px; color: var(--text-secondary); margin-bottom: 32px; }
+
+  footer {
+    background: var(--bg-light);
+    padding: 32px 22px; text-align: center;
+    border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--text-tertiary);
+  }
+
+  @media (max-width: 720px) {
+    .nav-inner { position: relative; }
+    .nav-toggle { display: inline-flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 4px 22px 14px;
+      gap: 0;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+      z-index: 9998;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .nav.nav-open .nav-links { display: flex; }
+    .nav-links li { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .nav-links li:last-child { border-bottom: none; }
+    .nav-links a { font-size: 15px; opacity: 1; display: block; font-weight: 500; }
+    .hero { padding: 60px 22px 48px; }
+    .section { padding: 70px 18px; }
+    .day { padding: 28px 22px; }
+    .item { grid-template-columns: 70px 24px 1fr; gap: 14px; }
+    .item-time { font-size: 13px; }
+    .day-progress { text-align: left; min-width: auto; }
+    .day-progress-bar { margin-left: 0; }
+    .menu-pick { padding: 28px 22px; }
+    .menu-grid { grid-template-columns: 1fr; gap: 24px; }
+    .menu-head { flex-direction: column; }
+    .menu-note { text-align: left; max-width: 100%; }
+    .budget { grid-template-columns: repeat(2, 1fr); }
+    .flight-row { grid-template-columns: 70px 1fr; gap: 8px 12px; }
+    .flight-row > .flight-arrow, .flight-row > :nth-child(4), .flight-row > :nth-child(5) { display: none; }
+    .flight-leg { font-size: 12.5px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 48px 18px 40px; }
+    .hero-eyebrow { font-size: 15px; }
+    .hero-subtitle { font-size: 18px; margin-bottom: 22px; }
+    .hero-meta { font-size: 13px; flex-direction: column; gap: 8px; }
+    .hero-meta > span { padding: 0; }
+    .hero-meta .dot { display: none; }
+    .highlights { padding: 48px 18px; }
+    .highlights-inner { gap: 20px; }
+    .section { padding: 56px 16px; }
+    .section-title { font-size: 32px; }
+    .section-lead { font-size: 17px; }
+    .day { padding: 24px 18px; border-radius: 22px; }
+    .day-title { font-size: 24px; }
+    .day-subtitle { font-size: 15px; }
+    .day-note { font-size: 12.5px; padding: 12px 14px; }
+    .item { grid-template-columns: 58px 22px 1fr; gap: 10px; padding: 14px 0; }
+    .item-time { font-size: 12px; padding-top: 2px; }
+    .item-title { font-size: 15px; }
+    .item-desc { font-size: 13px; }
+    .menu-pick { padding: 22px 16px; border-radius: 18px; }
+    .menu-brand { font-size: 28px; }
+    .budget { grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px; }
+    .budget-cell .b-amt { font-size: 15px; }
+    .booking-card { padding: 20px 18px 32px; }
+    .booking-name { font-size: 15px; padding-right: 65px; }
+    .booking-when { font-size: 13px; }
+    .booking-status { font-size: 9px; padding: 3px 7px; top: 18px; right: 18px; }
+    .checklist { padding: 4px 18px; }
+    .cta-strip { padding: 70px 18px; }
+    .cta-title { font-size: 30px; }
+    .cta-sub { font-size: 16px; margin-bottom: 24px; }
+    .flights { padding: 40px 18px; }
+    .nav-progress { display: none; }
+    .stat-card { padding: 18px 14px; }
+    .stat-value { font-size: 26px; }
+  }
+
+  /* === Packing (준비물) === */
+  .packing { background: var(--bg-light); padding: 100px 22px; }
+  .packing-inner { max-width: 1024px; margin: 0 auto; }
+  .packing-toolbar {
+    display: flex; gap: 10px; margin: 32px 0 24px; flex-wrap: wrap;
+  }
+  .packing-tool-btn {
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 9px 18px;
+    border-radius: 980px;
+    font-size: 13.5px; font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s, border-color 0.2s;
+    font-family: inherit;
+  }
+  .packing-tool-btn:hover { background: #fafafa; border-color: #b8b8bd; }
+  .packing-tool-btn:active { transform: scale(0.97); }
+  .packing-tool-btn.primary {
+    background: var(--check-fill); color: #fff; border-color: var(--check-fill);
+  }
+  .packing-tool-btn.primary:hover { background: #2d2d2f; border-color: #2d2d2f; }
+
+  .packing-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .packing-column {
+    background: var(--bg-white);
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: var(--shadow-card);
+    display: flex; flex-direction: column;
+  }
+  .packing-col-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 18px; padding-bottom: 14px;
+    border-bottom: 1px solid #f0f0f2;
+  }
+  .packing-col-title {
+    font-size: 22px; font-weight: 700; letter-spacing: -0.02em;
+  }
+  .packing-col-count {
+    font-size: 13px; color: var(--text-tertiary);
+    font-variant-numeric: tabular-nums;
+  }
+  .packing-list {
+    display: flex; flex-direction: column; gap: 8px;
+    min-height: 60px;
+    margin-bottom: 14px;
+  }
+  .packing-empty {
+    text-align: center; color: var(--text-tertiary);
+    font-size: 13px; padding: 24px 8px;
+    border: 1px dashed #e4e4e8; border-radius: 12px;
+  }
+  .pack-card {
+    display: grid;
+    grid-template-columns: 22px 24px 1fr 28px;
+    gap: 12px; align-items: start;
+    padding: 13px 14px;
+    background: var(--bg-white);
+    border: 1px solid #ececef;
+    border-radius: 14px;
+    cursor: grab;
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s, border-color 0.15s, background 0.15s;
+    user-select: none;
+    position: relative;
+  }
+  .pack-card:hover {
+    border-color: #d8d8dc;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    transform: translateY(-1px);
+  }
+  .pack-card.dragging { opacity: 0.35; cursor: grabbing; }
+  .pack-card.drag-over {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(0,113,227,0.18);
+  }
+  .pack-handle {
+    color: #c0c0c5;
+    font-size: 14px; line-height: 1;
+    cursor: grab;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+  .pack-card:hover .pack-handle { color: var(--text-tertiary); }
+  .pack-card.checked { background: #fafafa; }
+  .pack-card.checked .pack-label {
+    color: var(--text-tertiary);
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+  }
+  .pack-label {
+    font-size: 14.5px; font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    padding-top: 1px;
+    transition: color 0.15s;
+  }
+  .pack-card .pack-handle { padding-top: 4px; }
+  .pack-card .pack-del { margin-top: -3px; }
+  .pack-del {
+    background: none; border: none;
+    color: #c0c0c5;
+    cursor: pointer;
+    font-size: 20px; line-height: 1;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, color 0.15s;
+    font-family: inherit;
+    padding: 0;
+  }
+  .pack-del:hover { background: #f5f5f7; color: #d70015; }
+
+  .packing-add-form {
+    display: flex; gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f2;
+  }
+  .packing-add-form input {
+    flex: 1;
+    background: var(--bg-light);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 11px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text-primary);
+    transition: background 0.15s, border-color 0.15s;
+    min-width: 0;
+  }
+  .packing-add-form input:focus {
+    outline: none;
+    background: var(--bg-white);
+    border-color: var(--accent);
+  }
+  .packing-add-form button {
+    background: var(--check-fill);
+    color: #fff; border: none;
+    border-radius: 12px;
+    padding: 0 18px;
+    font-size: 18px; font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    font-family: inherit;
+    min-width: 44px;
+  }
+  .packing-add-form button:hover { background: #2d2d2f; }
+  .packing-add-form button:active { transform: scale(0.96); }
+
+  .packing-hint {
+    margin-top: 28px;
+    padding: 16px 20px;
+    background: rgba(0,113,227,0.06);
+    border-radius: 14px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+  .packing-hint strong { color: var(--text-primary); }
+  .packing-hint code {
+    background: rgba(0,0,0,0.06);
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-family: -apple-system, ui-monospace, monospace;
+  }
+  .packing-meta {
+    font-size: 11.5px;
+    color: var(--text-tertiary);
+    margin-top: 10px;
+    font-variant-numeric: tabular-nums;
+  }
+  .packing-status {
+    font-size: 12.5px;
+    color: var(--text-tertiary);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.2s;
+  }
+  .packing-status::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.75;
+  }
+  .packing-status[data-status="saved"]   { color: #1ca64c; }
+  .packing-status[data-status="saving"]  { color: var(--accent); }
+  .packing-status[data-status="error"]   { color: #d70015; }
+  .packing-status[data-status="offline"] { color: #ff9500; }
+  .packing-status[data-status="loading"] { color: var(--text-tertiary); }
+  @keyframes packingPulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+  .packing-status[data-status="saving"]::before,
+  .packing-status[data-status="loading"]::before {
+    animation: packingPulse 1.2s ease-in-out infinite;
+  }
+
+  /* === Prep checklist (출국 전 체크리스트) — 동적/드래그/자동저장 === */
+  .prep-controls {
+    display: flex; gap: 14px; align-items: center;
+    margin: 14px 2px 10px;
+    flex-wrap: wrap;
+  }
+  .prep-count {
+    font-size: 13px; color: var(--text-tertiary);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+  }
+  .check-item.prep-card {
+    grid-template-columns: 18px 28px 1fr 28px;
+    gap: 12px;
+    cursor: grab;
+    transition: background 0.15s, border-color 0.15s, transform 0.15s;
+  }
+  .check-item.prep-card.dragging { opacity: 0.4; cursor: grabbing; }
+  .check-item.prep-card.drag-over {
+    background: rgba(0,113,227,0.06);
+    box-shadow: inset 0 0 0 1.5px var(--accent);
+    border-radius: 8px;
+  }
+  .prep-handle {
+    color: #c0c0c5;
+    font-size: 14px; line-height: 1;
+    cursor: grab;
+    font-weight: 700; letter-spacing: -1px;
+    align-self: start; margin-top: 3px;
+    text-align: center;
+    user-select: none;
+  }
+  .check-item.prep-card:hover .prep-handle { color: var(--text-tertiary); }
+  .prep-del {
+    background: none; border: none;
+    color: #c0c0c5;
+    cursor: pointer;
+    font-size: 20px; line-height: 1;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, color 0.15s;
+    font-family: inherit; padding: 0;
+    align-self: start; margin-top: 0;
+  }
+  .prep-del:hover { background: #f5f5f7; color: #d70015; }
+  .prep-add-form {
+    display: flex; gap: 8px;
+    margin-top: 14px;
+  }
+  .prep-add-form input {
+    flex: 1;
+    background: var(--bg-light);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 11px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text-primary);
+    transition: background 0.15s, border-color 0.15s;
+    min-width: 0;
+  }
+  .prep-add-form input:focus {
+    outline: none;
+    background: var(--bg-white);
+    border-color: var(--accent);
+  }
+  .prep-add-form button {
+    background: var(--check-fill);
+    color: #fff; border: none;
+    border-radius: 12px;
+    padding: 0 18px;
+    font-size: 18px; font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    font-family: inherit; min-width: 44px;
+  }
+  .prep-add-form button:hover { background: #2d2d2f; }
+  .prep-add-form button:active { transform: scale(0.96); }
+
+  /* === Day notes (D1-D5 메모) === */
+  .day-notes-block {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid #ececef;
+  }
+  .day-notes-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 12px;
+  }
+  .day-notes-title {
+    font-size: 14px; font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+  .day-notes-count {
+    font-size: 12px; color: var(--text-tertiary);
+    font-variant-numeric: tabular-nums;
+  }
+  .day-notes-list {
+    display: flex; flex-direction: column; gap: 6px;
+    margin-bottom: 10px;
+    min-height: 24px;
+  }
+  .day-notes-empty {
+    font-size: 12.5px; color: var(--text-tertiary);
+    padding: 12px 4px;
+    text-align: center;
+    border: 1px dashed #e4e4e8; border-radius: 10px;
+  }
+  .day-note-card {
+    display: grid;
+    grid-template-columns: 18px 22px 1fr 24px;
+    gap: 10px; align-items: start;
+    padding: 10px 12px;
+    background: var(--bg-white);
+    border: 1px solid #ececef;
+    border-radius: 11px;
+    cursor: grab;
+    transition: background 0.15s, border-color 0.15s, transform 0.15s, opacity 0.15s;
+    user-select: none;
+  }
+  .day-note-card:hover {
+    border-color: #d8d8dc;
+    transform: translateY(-1px);
+  }
+  .day-note-card.dragging { opacity: 0.4; cursor: grabbing; }
+  .day-note-card.drag-over {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(0,113,227,0.15);
+  }
+  .day-note-card.checked { background: #fafafa; }
+  .day-note-card.checked .note-label {
+    color: var(--text-tertiary);
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+  }
+  .note-handle {
+    color: #c0c0c5; font-size: 13px; line-height: 1;
+    cursor: grab; font-weight: 700; letter-spacing: -1px;
+    text-align: center;
+  }
+  .day-note-card:hover .note-handle { color: var(--text-tertiary); }
+  .note-label {
+    font-size: 13.5px; font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    padding-top: 1px;
+    transition: color 0.15s;
+  }
+  .day-note-card .note-handle { padding-top: 3px; }
+  .day-note-card .note-del { margin-top: -3px; }
+  .day-notes-status {
+    font-size: 11px;
+    margin-left: 0;
+  }
+  .day-notes-status::before { width: 6px; height: 6px; }
+  .note-del {
+    background: none; border: none;
+    color: #c0c0c5;
+    cursor: pointer;
+    font-size: 18px; line-height: 1;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, color 0.15s;
+    font-family: inherit; padding: 0;
+  }
+  .note-del:hover { background: #f5f5f7; color: #d70015; }
+  .day-notes-add-form {
+    display: flex; gap: 6px;
+  }
+  .day-notes-add-form input {
+    flex: 1;
+    background: var(--bg-light);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 9px 12px;
+    font-size: 13.5px;
+    font-family: inherit;
+    color: var(--text-primary);
+    transition: background 0.15s, border-color 0.15s;
+    min-width: 0;
+  }
+  .day-notes-add-form input:focus {
+    outline: none;
+    background: var(--bg-white);
+    border-color: var(--accent);
+  }
+  .day-notes-add-form button {
+    background: var(--check-fill);
+    color: #fff; border: none;
+    border-radius: 10px;
+    padding: 0 14px;
+    font-size: 16px; font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    font-family: inherit; min-width: 38px;
+  }
+  .day-notes-add-form button:hover { background: #2d2d2f; }
+  .day-notes-add-form button:active { transform: scale(0.96); }
+
+  @media (max-width: 720px) {
+    .packing { padding: 70px 18px; }
+    .packing-grid { grid-template-columns: 1fr; gap: 16px; }
+    .packing-column { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">Kansai ’26</div>
+    <button class="nav-toggle" type="button" aria-label="섹션 메뉴" aria-expanded="false">
+      <svg class="nav-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#overview">개요</a></li>
+      <li><a href="#flights">항공</a></li>
+      <li><a href="#bookings">예약</a></li>
+      <li><a href="#shopping">쇼핑</a></li>
+      <li><a href="#route">동선</a></li>
+      <li><a href="#packing">준비물</a></li>
+      <li><a href="#day1">D1</a></li>
+      <li><a href="#day2">D2</a></li>
+      <li><a href="#day3">D3</a></li>
+      <li><a href="#day4">D4</a></li>
+      <li><a href="#day5">D5</a></li>
+    </ul>
+    <div class="nav-progress">완료 <strong id="navPct">0%</strong></div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">Kansai · September 2026</div>
+  <h1 class="hero-title">교토, 그리고 오사카.</h1>
+  <p class="hero-subtitle">쇼핑은 알차게, 체력은 아끼며.</p>
+  <div class="hero-meta">
+    <span>📅 9.4 – 9.8</span>
+    <span class="dot"></span>
+    <span>🌸 4박 5일</span>
+    <span class="dot"></span>
+    <span>♨️ 온야도 노노 ×2 · 레스파이어</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#day1" class="btn btn-primary">일정 시작하기</a>
+    <a href="#shopping" class="btn btn-ghost">쇼핑 맵 보기 ›</a>
+  </div>
+</header>
+
+<section class="highlights" id="overview">
+  <div class="highlights-inner">
+    <div class="highlight">
+      <div class="highlight-value">5<span style="font-size:0.5em;">일</span></div>
+      <div class="highlight-label">총 일정 (4박)</div>
+    </div>
+    <div class="highlight">
+      <div class="highlight-value">2<span style="font-size:0.5em;">도시</span></div>
+      <div class="highlight-label">교토 · 오사카</div>
+    </div>
+    <div class="highlight">
+      <div class="highlight-value" id="totalItems">54</div>
+      <div class="highlight-label">계획된 활동</div>
+    </div>
+    <div class="highlight">
+      <div class="highlight-value" id="totalPct">0<span style="font-size:0.5em;">%</span></div>
+      <div class="highlight-label">전체 진행률</div>
+    </div>
+  </div>
+</section>
+
+<!-- FLIGHTS -->
+<section class="flights" id="flights">
+  <div class="flights-inner">
+    <div class="flights-title">Flight Itinerary · 트립닷컴 · 발권 완료</div>
+    <div class="flight-row">
+      <div class="flight-code">WE 511</div>
+      <div class="flight-leg"><strong>서울(ICN)</strong> → <strong>오사카(KIX)</strong></div>
+      <div class="flight-arrow">›</div>
+      <div class="flight-leg" style="color:rgba(255,255,255,0.6);font-size:12px;">9.4 (금) · 출발편</div>
+      <div class="flight-time">11:10 – 12:55<small>1시간 45분</small></div>
+    </div>
+    <div class="flight-row">
+      <div class="flight-code">OZ 113</div>
+      <div class="flight-leg"><strong>오사카(KIX)</strong> → <strong>서울(ICN)</strong></div>
+      <div class="flight-arrow">›</div>
+      <div class="flight-leg" style="color:rgba(255,255,255,0.6);font-size:12px;">9.8 (화) · 아시아나</div>
+      <div class="flight-time">19:45 – 21:40<small>1시간 55분</small></div>
+    </div>
+    <div class="flights-foot">
+      <span>한국·일본 시차 없음 (둘 다 UTC+9)</span>
+      <span>왕복 2인 총액 <strong>677,250원</strong> · 발권 완료</span>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKINGS -->
+<section class="bookings" id="bookings">
+  <div class="bookings-inner">
+    <div class="section-eyebrow">Reservations</div>
+    <h2 class="section-title">예약 내역, <em>한눈에.</em></h2>
+    <p class="section-lead">확정된 예약과 추가로 잡아야 할 것, 그리고 출국 전 체크리스트.</p>
+
+    <div class="bookings-stats">
+      <div class="stat-card">
+        <div class="stat-value green">8</div>
+        <div class="stat-label">예약 완료</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value orange">3</div>
+        <div class="stat-label">예약 권장 / 검토</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value red">12</div>
+        <div class="stat-label">출국 전 준비</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value blue">154<small>만원</small></div>
+        <div class="stat-label">사전 결제 완료</div>
+      </div>
+    </div>
+
+    <div class="booking-group-title confirmed">✓ 예약 완료</div>
+    <div class="booking-grid" id="confirmed-bookings">
+      <div class="booking-card confirmed">
+        <div class="booking-status confirmed">발권완료</div>
+        <div class="booking-icon">✈️</div>
+        <div class="booking-name">왕복 항공권 (WE511 / OZ113)</div>
+        <div class="booking-when">9.4 (금) → 9.8 (화) <span class="day-of">· 2인</span></div>
+        <div class="booking-detail">ICN 11:10 → KIX 12:55 / KIX 19:45 → ICN 21:40</div>
+        <div class="booking-note">트립닷컴 발권 완료 · 총 677,250원</div>
+        <div class="booking-id">TRIP.COM</div>
+        <div class="booking-city">ICN·KIX</div>
+      </div>
+      <div class="booking-card confirmed">
+        <div class="booking-status confirmed">예약확정</div>
+        <div class="booking-icon">♨️</div>
+        <div class="booking-name">온야도 노노 교토시치조 내추럴 핫 스프링스</div>
+        <div class="booking-when">9.4 (금) → 9.6 (일) <span class="day-of">· 2박 · 퀸룸</span></div>
+        <div class="booking-detail">교토역 도보권 · 객실 1개 · 온천 대욕장 보유</div>
+        <div class="booking-note">온라인 사전 결제 완료 · 401,350원</div>
+        <div class="booking-id">D1–D2 숙소</div>
+        <div class="booking-city">KYOTO</div>
+      </div>
+      <div class="booking-card confirmed">
+        <div class="booking-status confirmed">예약확정</div>
+        <div class="booking-icon">🏨</div>
+        <div class="booking-name">호텔 한큐 레스파이어 오사카</div>
+        <div class="booking-when">9.6 (일) → 9.7 (월) <span class="day-of">· 1박 · Double</span></div>
+        <div class="booking-detail">우메다 · Double Room (13~23층) · 객실 1개</div>
+        <div class="booking-note">온라인 사전 결제 완료 · 179,733원</div>
+        <div class="booking-id">D3 숙소</div>
+        <div class="booking-city">OSAKA</div>
+      </div>
+      <div class="booking-card confirmed">
+        <div class="booking-status confirmed">예약확정</div>
+        <div class="booking-icon">♨️</div>
+        <div class="booking-name">온야도 노노 난바 내추럴 핫 스프링</div>
+        <div class="booking-when">9.7 (월) → 9.8 (화) <span class="day-of">· 1박 · 모더레이트 트윈</span></div>
+        <div class="booking-detail">난바 · 객실 1개 · 대욕장 + 족욕</div>
+        <div class="booking-note">온라인 사전 결제 완료 · 242,337원</div>
+        <div class="booking-id">D4 숙소</div>
+        <div class="booking-city">OSAKA</div>
+      </div>
+      <div class="booking-card confirmed">
+        <div class="booking-status confirmed">예약확정</div>
+        <div class="booking-icon">🥘</div>
+        <div class="booking-name">스키야키 니쿠노 히로시게 니시키시장</div>
+        <div class="booking-when">9.5 (토) 18:00 <span class="day-of">· 2명 · 가라스마역</span></div>
+        <div class="booking-detail">【교품 스키야키 : 대나무】 A5 흑모 와규 등심 스키야키 등 전 5품 (6품 구성)</div>
+        <div class="booking-note">JPY 10,780/인 (세금 포함) · 체류 1시간 30분 · 인터넷 예약</div>
+        <div class="booking-id">#HDZEZ33X9V</div>
+        <div class="booking-city">KYOTO</div>
+      </div>
+      <div class="booking-card confirmed">
+        <div class="booking-status confirmed">예약확정</div>
+        <div class="booking-icon">🥩</div>
+        <div class="booking-name">쿠로게와규 우 토탄토 하라미 야키니쿠 고리짱</div>
+        <div class="booking-when">9.6 (일) 19:30 <span class="day-of">· 2명 · 나카자키초역</span></div>
+        <div class="booking-detail">야키니쿠 · 내장구이 · 한식 · 좌석만 예약 (코스 지정 안 함)</div>
+        <div class="booking-note">체류 1시간 30분 · 시스템 이용료 JPY 880 결제 완료</div>
+        <div class="booking-id">#CJP2Q3RKGG</div>
+        <div class="booking-city">OSAKA</div>
+      </div>
+      <div class="booking-card confirmed">
+        <div class="booking-status confirmed">예약확정</div>
+        <div class="booking-icon">🍣</div>
+        <div class="booking-name">스시 로바타 키타로우즈시 도구야스지</div>
+        <div class="booking-when">9.7 (월) 19:30 <span class="day-of">· 2명 · 난바역</span></div>
+        <div class="booking-detail">이자카야 · 스시(초밥) · 로바타야키 · 좌석만 예약</div>
+        <div class="booking-note">체류 2시간 · 시스템 이용료 JPY 880 결제 완료</div>
+        <div class="booking-id">#4GQTAAV3ZS</div>
+        <div class="booking-city">OSAKA</div>
+      </div>
+      <div class="booking-card confirmed">
+        <div class="booking-status confirmed">예약확정</div>
+        <div class="booking-icon">🚆</div>
+        <div class="booking-name">JR 하루카 간사이공항 특급</div>
+        <div class="booking-when">9.4 (금) <span class="day-of">· KIX → 교토역 · 2 x 성인</span></div>
+        <div class="booking-detail">E-티켓 (QR코드 입장) · 결제 완료 ₩37,200</div>
+        <div class="booking-note">유효 2026.8.28 ~ 2027.3.31 · 바우처 교환 전 무료 취소 가능</div>
+        <div class="booking-id">#BSQ675585</div>
+        <div class="booking-city">KIX→KYOTO</div>
+      </div>
+    </div>
+
+    <div class="booking-group-title recommended">⚠ 예약 권장 / 검토 필요</div>
+    <div class="booking-grid" id="recommended-bookings">
+      <div class="booking-card recommended">
+        <div class="booking-status recommended">진행 중</div>
+        <div class="booking-icon">🚉</div>
+        <div class="booking-name">라피트 좌석 지정</div>
+        <div class="booking-when">9.8 (화) 15:30 <span class="day-of">· 난바 → KIX</span></div>
+        <div class="booking-detail">38분 · 16:08 공항 도착 · 전 좌석 지정제 · <strong>예약 진행 중</strong></div>
+        <div class="booking-note">난카이 전철 · 츠지리 웨이팅 대비 16:00 편도 검토 가능 (KIX 16:38 도착, 버퍼 3시간 7분)</div>
+        <div class="booking-city">NAMBA</div>
+      </div>
+      <div class="booking-card recommended">
+        <div class="booking-status recommended">권장</div>
+        <div class="booking-icon">🥢</div>
+        <div class="booking-name">기온탄토</div>
+        <div class="booking-when">9.4 (금) 18:00 <span class="day-of">· 기온</span></div>
+        <div class="booking-detail">철판 오코노미야키 / 야키소바 · 도착 첫날 저녁</div>
+        <div class="booking-note">예약 가능 여부 확인 필요 · 비 예보(70%)라 대기 부담</div>
+        <div class="booking-city">KYOTO</div>
+      </div>
+      <div class="booking-card recommended">
+        <div class="booking-status recommended">권장</div>
+        <div class="booking-icon">🍚</div>
+        <div class="booking-name">타이쇼 하나나 (아라시야마)</div>
+        <div class="booking-when">9.5 (토) 10:30 <span class="day-of">· 오픈런</span></div>
+        <div class="booking-detail">도미 오차즈케 정식 · 토요일이라 대기 김</div>
+        <div class="booking-note">예약 불가 시 10:30 오픈런 줄서기로 진행</div>
+        <div class="booking-city">ARASHIYAMA</div>
+      </div>
+    </div>
+
+    <div class="booking-group-title required">📋 출국 전 체크리스트</div>
+    <div class="prep-controls">
+      <span class="prep-count" id="prep-count">0/0</span>
+      <span class="packing-status" id="prep-status" data-status="loading">로딩 중...</span>
+    </div>
+    <div class="checklist" id="prep-list"></div>
+    <form class="prep-add-form" id="prep-add">
+      <input type="text" placeholder="추가할 항목 (예: 캐리어 저울)" maxlength="120" autocomplete="off" />
+      <button type="submit" aria-label="추가">+</button>
+    </form>
+  </div>
+</section>
+
+<!-- SHOPPING MAP -->
+<section class="section" id="shopping">
+  <div class="section-inner">
+    <div class="section-eyebrow">Shopping</div>
+    <h2 class="section-title">쇼핑 스팟, <em>층수까지.</em></h2>
+    <p class="section-lead">동선 순서대로 정리했습니다. 같은 건물에 몰린 곳은 한 번에 털고 나오세요.</p>
+
+    <div class="menu-pick">
+      <div class="menu-head">
+        <div class="menu-head-l">
+          <div class="menu-eyebrow">Shopping Map · Kansai</div>
+          <div class="menu-brand">쇼핑 스팟 10곳</div>
+          <div class="menu-tagline">교토 → 우메다 → 신사이바시 → 도톤보리</div>
+        </div>
+        <div class="menu-note">다이마루 신사이바시 본관은 <strong style="color:#fbbf24;">8F·9F</strong>가 모두 일정에 포함됩니다. 파르코는 연결통로로 이어져요.</div>
+      </div>
+
+      <div class="budget">
+        <div class="budget-cell">
+          <div class="b-label">교토</div>
+          <div class="b-amt">2<small>곳 · D2</small></div>
+        </div>
+        <div class="budget-cell">
+          <div class="b-label">우메다</div>
+          <div class="b-amt">4<small>곳 · D3–D4</small></div>
+        </div>
+        <div class="budget-cell">
+          <div class="b-label">신사이바시</div>
+          <div class="b-amt">3<small>곳 · D4–D5</small></div>
+        </div>
+        <div class="budget-cell total">
+          <div class="b-label">도톤보리</div>
+          <div class="b-amt">1<small>곳 · D5</small></div>
+        </div>
+      </div>
+
+      <div class="menu-grid">
+        <div class="menu-col">
+          <h4>교토 <span class="col-total">2곳</span></h4>
+          <ul class="menu-list">
+            <li>
+              <div class="name">닌텐도 교토<small>가와라마치 타카시마야 T8</small></div>
+              <div class="price"><span class="krw">D2</span><span class="idr">16:30</span></div>
+            </li>
+            <li>
+              <div class="name">신쿄고쿠 가챠<small>니시키 텐만구 인근 · 야경 산책 겸</small></div>
+              <div class="price"><span class="krw">D2</span><span class="idr">20:00</span></div>
+            </li>
+          </ul>
+
+          <h4 style="margin-top:24px;">오사카 · 우메다 <span class="col-total">4곳</span></h4>
+          <ul class="menu-list">
+            <li>
+              <div class="name">루쿠아 6F<small>란다(구두) · 메종 드 플뢰르(가방)</small></div>
+              <div class="price"><span class="krw">D3</span><span class="idr">15:30</span></div>
+            </li>
+            <li>
+              <div class="name">구르니에 우메다점<small>크림 파이 🥧</small></div>
+              <div class="price"><span class="krw">D3</span><span class="idr">15:30</span></div>
+            </li>
+            <li>
+              <div class="name">잇신도<small>한큐 백화점 B1 · 레드멜론 모찌 포장</small></div>
+              <div class="price"><span class="krw">D4</span><span class="idr">12:20</span></div>
+            </li>
+            <li>
+              <div class="name">헵파이브 3~4F<small>리즈리사 · 앙크루즈</small></div>
+              <div class="price"><span class="krw">D4</span><span class="idr">12:45</span></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="menu-col">
+          <h4>오사카 · 신사이바시 <span class="col-total">3곳</span></h4>
+          <ul class="menu-list">
+            <li>
+              <div class="name">포켓몬센터 오사카 DX<small>다이마루 신사이바시 본관 9F</small></div>
+              <div class="price"><span class="krw">D4</span><span class="idr">14:45</span></div>
+            </li>
+            <li>
+              <div class="name">치이카와 랜드<small>파르코 6F · 다이마루와 연결통로 · 10:00–20:00</small></div>
+              <div class="price"><span class="krw">D4</span><span class="idr">15:30</span></div>
+            </li>
+            <li>
+              <div class="name">사료 츠지리<small>다이마루 본관 8F · 우지 말차 파르페</small></div>
+              <div class="price"><span class="krw">D5</span><span class="idr">13:00</span></div>
+            </li>
+          </ul>
+
+          <h4 style="margin-top:24px;">난바 · 도톤보리 <span class="col-total">1곳</span></h4>
+          <ul class="menu-list">
+            <li>
+              <div class="name">도톤보리 돈키호테<small>09:00 한산할 때 털고 캐리어 테트리스</small></div>
+              <div class="price"><span class="krw">D5</span><span class="idr">09:00</span></div>
+            </li>
+          </ul>
+
+          <h4 style="margin-top:24px;">먹거리 포장 <span class="col-total">3곳</span></h4>
+          <ul class="menu-list">
+            <li>
+              <div class="name">공항 2층 로손<small>오니기리 · 샌드위치 · 호로요이 (하루카 먹방용)</small></div>
+              <div class="price"><span class="krw">D1</span><span class="idr">13:50</span></div>
+            </li>
+            <li>
+              <div class="name">숙소 앞 편의점<small>수플레 푸딩 · 쟈지 우유 푸딩</small></div>
+              <div class="price"><span class="krw">D1</span><span class="idr">22:00</span></div>
+            </li>
+            <li>
+              <div class="name">산지야 말차 크레페<small>裏寺町 595-3 · 800엔 · 13:00–20:00</small></div>
+              <div class="price"><span class="krw">D2</span><span class="idr">14:20</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="menu-foot">
+        💡 <strong style="color:#fbbf24;">동선 팁</strong> — D4 오후는 다이마루 9F(포켓몬) → 파르코 6F(치이카와) → 다이마루 8F(츠지리, D5에 방문)가 전부 같은 건물권입니다.
+        헵파이브는 원래 D3에 있었으나 청수사 + 우메다 쇼핑 조합이 체력을 다 쓰기 때문에 <strong style="color:#fbbf24;">D4 오전</strong>으로 옮겼습니다.<br>
+        🧳 <strong style="color:#fbbf24;">캐리어</strong> — 돈키호테를 마지막 날 오전에 배치했으니, 그 전까지 산 것들은 캐리어 여유를 남겨두세요.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTE CHECK -->
+<section class="section section-alt" id="route">
+  <div class="section-inner">
+    <div class="section-eyebrow">Route Check</div>
+    <h2 class="section-title">동선 점검, <em>거리로.</em></h2>
+    <p class="section-lead">D1~D5 전 구간의 실제 이동 거리·소요 시간을 대조해 물리적으로 불가능한 구간 4곳을 조정했습니다.</p>
+
+    <div class="menu-pick route">
+      <div class="menu-head">
+        <div class="menu-head-l">
+          <div class="menu-eyebrow">Feasibility Audit · D1–D5</div>
+          <div class="menu-brand">조정 4건 · 보완 4건</div>
+          <div class="menu-tagline">이동 시간 미반영 구간 + 예약 체류시간 충돌 검출</div>
+        </div>
+        <div class="menu-note">전체 일정 중 <strong style="color:#fbbf24;">D1 오후</strong>가 가장 빡빡하고, <strong style="color:#4ade80;">D5</strong>가 버퍼 여유가 가장 큽니다.</div>
+      </div>
+
+      <div class="budget">
+        <div class="budget-cell">
+          <div class="b-label">시간 조정</div>
+          <div class="b-amt">4<small>건 · 반영 완료</small></div>
+        </div>
+        <div class="budget-cell">
+          <div class="b-label">경로 보완</div>
+          <div class="b-amt">4<small>건 · 안내 추가</small></div>
+        </div>
+        <div class="budget-cell">
+          <div class="b-label">최대 리스크</div>
+          <div class="b-amt">D1<small>입국~하루카</small></div>
+        </div>
+        <div class="budget-cell total">
+          <div class="b-label">공항 버퍼</div>
+          <div class="b-amt">3<small>시간 37분 (D5)</small></div>
+        </div>
+      </div>
+
+      <div class="menu-grid">
+        <div class="menu-col">
+          <h4>⚠️ 조정한 구간 <span class="col-total">4건</span></h4>
+          <ul class="menu-list">
+            <li>
+              <div class="name">D1 · 로손 → 하루카 승강장<small>2F 연결통로 도보 8~10분 미반영 → 로손 15분 컷 + 이동 항목 신설</small></div>
+              <div class="price"><span class="fix">수정</span><span class="idr">14:15→14:16</span></div>
+            </li>
+            <li>
+              <div class="name">D4 · 짐 보관 → 신사이바시<small>온야도 노노 난바 → 다이마루 도보 10~12분 미반영</small></div>
+              <div class="price"><span class="fix">수정</span><span class="idr">14:45→15:00</span></div>
+            </li>
+            <li>
+              <div class="name">D4 · 대욕장<small>키타로우즈시 체류 2시간(21:30 종료)과 정면 충돌</small></div>
+              <div class="price"><span class="fix">수정</span><span class="idr">21:00→21:45</span></div>
+            </li>
+            <li>
+              <div class="name">D5 · 코가류 → 사료 츠지리<small>도톤보리 → 다이마루 신사이바시 도보 7~10분 미반영</small></div>
+              <div class="price"><span class="fix">수정</span><span class="idr">13:00→13:10</span></div>
+            </li>
+          </ul>
+
+          <h4 style="margin-top:24px;">➕ 보완한 안내 <span class="col-total">4건</span></h4>
+          <ul class="menu-list">
+            <li>
+              <div class="name">D2 · 아라시야마 도착~오픈 공백<small>09:50~10:30 40분 → 치쿠린·도게츠교 산책 추가</small></div>
+              <div class="price"><span class="warn">추가</span><span class="idr">D2 09:50</span></div>
+            </li>
+            <li>
+              <div class="name">D2 · 복귀 노선<small>한큐(카츠라 환승) 25~30분 &lt; JR+지하철 40분+</small></div>
+              <div class="price"><span class="warn">경로</span><span class="idr">D2 13:30</span></div>
+            </li>
+            <li>
+              <div class="name">D3 · 청수사 차량 진입 제한<small>고죠자카 하차 후 오르막 도보 10~15분 → 실관람 09:15 시작</small></div>
+              <div class="price"><span class="warn">주의</span><span class="idr">D3 09:00</span></div>
+            </li>
+            <li>
+              <div class="name">D2 · 니시키시장 야간<small>점포 18시경 폐점 — 통과용, 텐만구·신쿄고쿠 가챠가 목적</small></div>
+              <div class="price"><span class="warn">주의</span><span class="idr">D2 20:00</span></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="menu-col">
+          <h4>📏 주요 구간 이동 시간 <span class="col-total">실측 기준</span></h4>
+          <ul class="menu-list">
+            <li>
+              <div class="name">KIX → 교토역<small>JR 하루카 특급</small></div>
+              <div class="price"><span class="krw">80분</span><span class="idr">D1</span></div>
+            </li>
+            <li>
+              <div class="name">교토역 → 사가아라시야마<small>JR 사가노선 쾌속</small></div>
+              <div class="price"><span class="krw">16분</span><span class="idr">D2</span></div>
+            </li>
+            <li>
+              <div class="name">아라시야마 → 가와라마치<small>한큐 + 카츠라 환승</small></div>
+              <div class="price"><span class="krw">25~30분</span><span class="idr">D2</span></div>
+            </li>
+            <li>
+              <div class="name">교토역 → 청수사<small>택시 (+ 오르막 도보 10~15분)</small></div>
+              <div class="price"><span class="krw">15~20분</span><span class="idr">D3</span></div>
+            </li>
+            <li>
+              <div class="name">교토역 → 오사카역<small>JR 신쾌속</small></div>
+              <div class="price"><span class="krw">29분</span><span class="idr">D3</span></div>
+            </li>
+            <li>
+              <div class="name">우메다 → 나카자키초<small>다니마치선 1정거장</small></div>
+              <div class="price"><span class="krw">2분</span><span class="idr">D3</span></div>
+            </li>
+            <li>
+              <div class="name">우메다 → 난바<small>미도스지선 (캐리어 시 혼잡)</small></div>
+              <div class="price"><span class="krw">8분</span><span class="idr">D4</span></div>
+            </li>
+            <li>
+              <div class="name">난바 숙소 → 신사이바시<small>신사이바시스지 아케이드 도보</small></div>
+              <div class="price"><span class="krw">10~12분</span><span class="idr">D4·D5</span></div>
+            </li>
+            <li>
+              <div class="name">난바 숙소 → 도톤보리<small>도보</small></div>
+              <div class="price"><span class="krw">8~10분</span><span class="idr">D5</span></div>
+            </li>
+            <li>
+              <div class="name">난카이 난바 → KIX<small>라피트 특급</small></div>
+              <div class="price"><span class="krw">38분</span><span class="idr">D5</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="menu-foot">
+        ✅ <strong style="color:#4ade80;">종합</strong> — 조정 후 5일 전 구간이 물리적으로 성립합니다. D2·D3 오후, D4 오전, D5 오전은 도보 10분권에 목적지가 몰려 있어 손실이 거의 없습니다.<br>
+        ⚠️ <strong style="color:#fbbf24;">유일한 실패 지점</strong>은 <strong>D1 입국심사</strong>입니다. 55분을 넘기면 14:16 하루카를 놓치는데, 14:46 편으로 미뤄도 저녁(기온탄토 18:00) 일정엔 영향이 없으니 무리하지 마세요.<br>
+        🧳 <strong style="color:#7dd3fc;">캐리어 이동은 D3(교토→우메다)과 D4(우메다→난바) 두 번</strong>뿐이고, 나머지 날은 전부 숙소 짐 보관으로 처리됩니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="packing" id="packing">
+  <div class="packing-inner">
+    <div class="section-eyebrow">Packing</div>
+    <h2 class="section-title">준비물, <em>둘이서.</em></h2>
+    <p class="section-lead">형인과 정아 각자 챙길 것들. 카드를 끌어 순서를 바꾸고, 완료한 건 체크하세요.</p>
+
+    <div class="packing-toolbar">
+      <button id="packing-sync" class="packing-tool-btn" type="button">↻ 새로고침</button>
+      <span class="packing-status" id="packing-status" data-status="loading">로딩 중...</span>
+    </div>
+
+    <div class="packing-grid">
+      <div class="packing-column">
+        <div class="packing-col-head">
+          <h3 class="packing-col-title">형인</h3>
+          <span class="packing-col-count" id="packing-progress-hyungin">0/0</span>
+        </div>
+        <div class="packing-list" id="packing-list-hyungin"></div>
+        <form class="packing-add-form" data-who="hyungin">
+          <input type="text" placeholder="추가할 항목..." maxlength="60" autocomplete="off" />
+          <button type="submit" aria-label="추가">+</button>
+        </form>
+      </div>
+
+      <div class="packing-column">
+        <div class="packing-col-head">
+          <h3 class="packing-col-title">정아</h3>
+          <span class="packing-col-count" id="packing-progress-junga">0/0</span>
+        </div>
+        <div class="packing-list" id="packing-list-junga"></div>
+        <form class="packing-add-form" data-who="junga">
+          <input type="text" placeholder="추가할 항목..." maxlength="60" autocomplete="off" />
+          <button type="submit" aria-label="추가">+</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="packing-hint">
+      💡 <strong>자동 저장</strong>: 편집 1초 후 서버에 저장됩니다. 다른 기기/사람도 페이지만 열면 최신본을 자동으로 봅니다.<br>
+      📡 <strong>오프라인</strong>: 인터넷이 없어도 로컬에 저장되며, 온라인 복구 시 다음 편집에서 자동 동기화됩니다.<br>
+      ↻ <strong>새로고침</strong>: 다른 기기에서 방금 편집한 내용을 즉시 가져오고 싶을 때 사용 (페이지 로드 시 자동으로도 가져옵니다).
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-eyebrow">Itinerary</div>
+    <h2 class="section-title">하루하루를, <em>여유롭게.</em></h2>
+    <p class="section-lead">저체력 모드가 목표. 각 시간대를 탭으로 체크하며 진행하세요. 일자별 진행률이 실시간으로 업데이트됩니다.</p>
+  </div>
+</section>
+
+<div id="days-container">
+  <section class="section" id="day1">
+    <div class="section-inner">
+      <div class="day" data-day-index="0">
+        <div class="day-header">
+          <div class="day-title-block">
+            <div class="day-eyebrow">DAY 01 · 09.04 FRI</div>
+            <h3 class="day-title">인천 → 교토 입성</h3>
+            <div class="day-subtitle">🌧️ 비 70% · 33°/25° · 온야도 노노 교토시치조 (2박)</div>
+          </div>
+          <div class="day-progress">
+            <div class="day-progress-pct"><span class="pct-num">0</span>%</div>
+            <div class="day-progress-bar"><div class="day-progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="day-note rain"><strong>☔ 비 70% — 택시가 정답:</strong> 기온 이동은 무리하지 말고 택시. <strong>플랜B</strong> — 비가 심하면 야사카 신사 야경 생략하고 시조 아케이드(지붕 있음)에서 산책, 21:00에 바로 택시로 복귀해도 OK. 접이식 우산 2개 필수.</div>
+        <div class="day-note"><strong>🧭 동선 점검 — 오늘이 가장 빡빡합니다.</strong> KIX 도착층(1F) → 로손(2F) → JR 간사이공항역 승강장까지 <strong>연결통로 도보 8~10분</strong>이 필요합니다. 로손을 <strong>13:50~14:05로 15분만</strong> 쓰고 바로 이동해야 14:16 하루카를 탑니다. 입국심사가 밀리면 <strong>14:46 하루카</strong>로 미루세요 (교토역 16:05 도착, 체크인만 30분 늦어질 뿐 저녁 일정엔 영향 없음).</div>
+        <ul class="timeline">
+          <li class="item" data-item-id="day1-0">
+            <div class="item-time">11:10</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">WE511 인천(ICN) → 간사이(KIX)</div>
+              <div class="item-desc">1시간 45분 비행 · 12:55 도착 · 시차 없음</div>
+              <div class="item-meta"><span class="item-tag">항공</span><span class="item-tag confirmed">발권완료</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day1-1">
+            <div class="item-time">12:55</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">입국심사 & 수하물</div>
+              <div class="item-desc">성수기 금요일 오후 · 55분 잡음 · <strong>Visit Japan Web</strong> 사전 등록이 속도를 좌우 · 밀리면 하루카 한 편 미루기</div>
+              <div class="item-meta"><span class="item-tag">공항</span><span class="item-tag hot">주의</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day1-2">
+            <div class="item-time">13:50</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">공항 2층 로손 털기 <span style="color:#b91c1c;">(15분 컷)</span></div>
+              <div class="item-desc">오니기리 · 샌드위치 · 호로요이 — 하루카에서 먹을 것 · <strong>14:05에는 무조건 나오기</strong></div>
+              <div class="item-meta"><span class="item-tag">식사</span><span class="item-tag shop">쇼핑</span><span class="item-tag hot">시간 엄수</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day1-2b">
+            <div class="item-time">14:05</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">JR 간사이공항역으로 이동</div>
+              <div class="item-desc">2F 연결통로 → 에어로플라자 방향 · <strong>도보 8~10분</strong> · QR 티켓(#BSQ675585) 미리 열어두기</div>
+              <div class="item-meta"><span class="item-tag">이동</span><span class="item-tag must">QR 준비</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day1-3">
+            <div class="item-time">14:16</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">하루카 탑승 → 교토역</div>
+              <div class="item-desc">약 80분 · 기차에서 먹방 · <strong>15:35 교토역 도착</strong> · 좌석 지정 완료 (₩37,200 / 2인)</div>
+              <div class="item-meta"><span class="item-tag">이동</span><span class="item-tag confirmed">#BSQ675585</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day1-4">
+            <div class="item-time">15:45</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">온야도 노노 교토시치조 체크인</div>
+              <div class="item-desc">교토역 하치조구치(남쪽) <strong>도보 5~7분</strong> · 퀸룸 · 2박 · 사전 결제 완료 (401,350원)</div>
+              <div class="item-meta"><span class="item-tag">숙소</span><span class="item-tag confirmed">예약확정</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day1-5">
+            <div class="item-time">15:45</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">가볍게 온천 후 휴식</div>
+              <div class="item-desc">대욕장 · 비행 피로 풀기 · 17:00까지</div>
+              <div class="item-meta"><span class="item-tag">온천</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day1-6">
+            <div class="item-time">17:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">택시로 기온거리 이동</div>
+              <div class="item-desc">교토역 → 기온 <strong>15~20분</strong> (금요일 저녁 러시아워면 25분) · 비 예보라 택시가 정답 · 숙소 프런트에 콜 요청</div>
+              <div class="item-meta"><span class="item-tag">이동</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day1-7">
+            <div class="item-time">18:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">기온탄토 — 철판 오코노미야키 / 야키소바</div>
+              <div class="item-desc">도착 첫날 저녁 · <strong>예약 가능 여부 확인 필요</strong></div>
+              <div class="item-meta"><span class="item-tag">식사</span><span class="item-tag hot">예약 권장</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day1-8">
+            <div class="item-time">19:40</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">야키토리 이치반</div>
+              <div class="item-desc">2차 · 가볍게 꼬치 + 한잔</div>
+              <div class="item-meta"><span class="item-tag">식사</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day1-9">
+            <div class="item-time">21:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">야사카 신사 야경 & 기온 산책</div>
+              <div class="item-desc">비 심하면 → 시조 아케이드(지붕 있음) 산책으로 대체</div>
+              <div class="item-meta"><span class="item-tag">관광</span><span class="item-tag must">플랜B 有</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day1-10">
+            <div class="item-time">22:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">숙소 앞 편의점 털기</div>
+              <div class="item-desc">수플레 푸딩 · 쟈지 우유 푸딩</div>
+              <div class="item-meta"><span class="item-tag">식사</span><span class="item-tag shop">쇼핑</span></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="day2">
+    <div class="section-inner">
+      <div class="day" data-day-index="1">
+        <div class="day-header">
+          <div class="day-title-block">
+            <div class="day-eyebrow">DAY 02 · 09.05 SAT</div>
+            <h3 class="day-title">아라시야마 & 가와라마치</h3>
+            <div class="day-subtitle">⭐ 야외 최적일 · 흐림 30% · 30°/24° · 온야도 노노 교토시치조</div>
+          </div>
+          <div class="day-progress">
+            <div class="day-progress-pct"><span class="pct-num">0</span>%</div>
+            <div class="day-progress-bar"><div class="day-progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="day-note"><strong>🚕 택시 vs JR:</strong> 토요일 아라시야마행 도로는 정체가 심합니다. <strong>JR이 16분에 확실</strong>. 택시가 편하면 09:15에는 출발.<br>📍 <strong>산지야</strong>: 京都市中京区 裏寺町 595-3 · 13:00~20:00 · 인스타 @kyotosanjiya · 닌텐도 스토어(타카시마야 T8)에서 도보권.</div>
+        <div class="day-note confirmed"><strong>🧭 동선 점검 — 오늘이 가장 효율적입니다.</strong> 아라시야마 도착(09:50)과 타이쇼 하나나 오픈(10:30) 사이 <strong>40분 공백</strong>이 있어 치쿠린·도게츠교를 넣었습니다. 복귀는 <strong>한큐 아라시야마역 → 카츠라 환승 → 한큐 교토카와라마치</strong>가 25~30분으로 가장 빠릅니다 (JR+지하철은 40분+). 오후는 산지야 → 타카시마야 T8 → 가라스마역 → 니시키시장 → 신쿄고쿠가 <strong>전부 도보 5~10분권</strong>으로 한 줄에 꿰입니다.</div>
+        <ul class="timeline">
+          <li class="item" data-item-id="day2-0">
+            <div class="item-time">~09:20</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">늦잠</div>
+              <div class="item-desc">아침 산책 없음 · 체력 아끼기</div>
+              <div class="item-meta"><span class="item-tag">휴식</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day2-1">
+            <div class="item-time">09:30</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">교토역 → JR 사가아라시야마역</div>
+              <div class="item-desc">사가노선 쾌속 <strong>16분</strong> (보통 20분) · 09:50 도착 · 토요일 도로 정체 있으니 JR 권장</div>
+              <div class="item-meta"><span class="item-tag">이동</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day2-1b">
+            <div class="item-time">09:50</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">치쿠린(대나무숲) & 도게츠교 산책</div>
+              <div class="item-desc">역 → 아라시야마 중심가 <strong>도보 10~15분</strong> · 오픈 대기 40분을 산책으로 소화 · 오전이라 사람도 적음</div>
+              <div class="item-meta"><span class="item-tag">관광</span><span class="item-tag must">공백 활용</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day2-2">
+            <div class="item-time">10:30</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">타이쇼 하나나 오픈런 줄 서기</div>
+              <div class="item-desc">토요일 · 예약 불가 시 줄서기 · 30분 대기 예상</div>
+              <div class="item-meta"><span class="item-tag">식사</span><span class="item-tag hot">오픈런</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day2-3">
+            <div class="item-time">11:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">점심 — 도미 오차즈케 정식</div>
+              <div class="item-desc">타이쇼 하나나 시그니처</div>
+              <div class="item-meta"><span class="item-tag">식사</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day2-4">
+            <div class="item-time">12:20</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">% 아라비카 라떼 들고 가츠라강변</div>
+              <div class="item-desc">도게츠교 북단 · 식당에서 <strong>도보 5~10분</strong> · 물멍 · 아라시야마 최고의 뷰포인트</div>
+              <div class="item-meta"><span class="item-tag">카페</span><span class="item-tag must">추천</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day2-5">
+            <div class="item-time">13:30</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">가와라마치로 복귀 — 한큐 라인</div>
+              <div class="item-desc"><strong>한큐 아라시야마역 → 카츠라 환승 → 한큐 교토카와라마치</strong> 25~30분 · % 아라비카에서 한큐역까지 도보 5분 · 14:00~14:05 도착</div>
+              <div class="item-meta"><span class="item-tag">이동</span><span class="item-tag must">한큐 권장</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day2-6">
+            <div class="item-time">14:20</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">산지야 (Sanjiya) — 말차 크레페</div>
+              <div class="item-desc">800엔 · 裏寺町 595-3 · 13:00~20:00 · @kyotosanjiya</div>
+              <div class="item-meta"><span class="item-tag">디저트</span><span class="item-tag must">신규</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day2-7">
+            <div class="item-time">15:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">가와라마치 카페에서 체력 충전</div>
+              <div class="item-desc">16:30까지 · <strong>숙소 복귀 안 함</strong> (이동 손실 방지)</div>
+              <div class="item-meta"><span class="item-tag">휴식</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day2-8">
+            <div class="item-time">16:30</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">닌텐도 스토어 교토</div>
+              <div class="item-desc">가와라마치 타카시마야 <strong>T8</strong> · 17:30까지</div>
+              <div class="item-meta"><span class="item-tag shop">쇼핑</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day2-9">
+            <div class="item-time">18:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">니쿠노 히로시게 — A5 와규 스키야키</div>
+              <div class="item-desc">니시키시장 서쪽 끝(가라스마역) · 타카시마야에서 <strong>도보 10~12분</strong> · 【교품 스키야키: 대나무】 A5 흑모 와규 등심 등 전 5품 · JPY 10,780/인 · 체류 1시간 30분</div>
+              <div class="item-meta"><span class="item-tag">식사</span><span class="item-tag confirmed">#HDZEZ33X9V</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day2-10">
+            <div class="item-time">20:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">니시키 텐만구 야경 & 신쿄고쿠 가챠</div>
+              <div class="item-desc">니시키시장 관통해 <strong>도보 7~10분</strong> (식당 바로 반대편 끝) · ⚠️ <strong>시장 점포는 18시경 폐점</strong>이라 통과만 · 텐만구 등불 + 신쿄고쿠 가챠샵(21~22시까지)이 목적</div>
+              <div class="item-meta"><span class="item-tag">관광</span><span class="item-tag shop">쇼핑</span></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="day3">
+    <div class="section-inner">
+      <div class="day" data-day-index="2">
+        <div class="day-header">
+          <div class="day-title-block">
+            <div class="day-eyebrow">DAY 03 · 09.06 SUN</div>
+            <h3 class="day-title">청수사 → 오사카 우메다</h3>
+            <div class="day-subtitle">🌦️ 소나기 60% · 31°/23° · 호텔 한큐 레스파이어 오사카</div>
+          </div>
+          <div class="day-progress">
+            <div class="day-progress-pct"><span class="pct-num">0</span>%</div>
+            <div class="day-progress-bar"><div class="day-progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="day-note"><strong>⚠️ 오늘의 조정:</strong> 원래 있던 <strong>헵파이브는 D4 오전으로 이동</strong>했습니다. 청수사 언덕 + 우메다 쇼핑 3시간 45분 조합은 저녁 전에 방전됩니다. 청수사도 2시간 30분 → <strong>1시간 45분으로 축소</strong>. 교토역 코인라커 대신 <strong>숙소 프런트 짐 보관</strong>으로 대체.</div>
+        <div class="day-note"><strong>🧭 동선 점검 — 청수사 접근에 함정이 있습니다.</strong> 청수사 인근은 차량 진입이 제한돼 택시가 <strong>고죠자카 / 기요미즈미치 정류장</strong>까지만 갑니다. 거기서 <strong>오르막 도보 10~15분</strong>이 추가되므로, 09:00 택시 하차 = 실제 관람 시작 09:15입니다. 하산 후 기온까지는 <strong>니넨자카·산넨자카 도보 20~25분</strong>(예쁜 길, 추천) 또는 택시 10분 — 11:00을 맞추려면 택시, 여유롭게 가려면 도보 후 11:15 시작으로 잡으세요.</div>
+        <ul class="timeline">
+          <li class="item" data-item-id="day3-0">
+            <div class="item-time">08:30</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">체크아웃 → 온야도 노노 프런트에 짐 보관</div>
+              <div class="item-desc">코인라커 대신 숙소 보관 (무료 · 동선 유리)</div>
+              <div class="item-meta"><span class="item-tag">숙소</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day3-1">
+            <div class="item-time">09:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">청수사 (기요미즈데라)</div>
+              <div class="item-desc">교토역 → 고죠자카 택시 15~20분 → <strong>오르막 도보 10~15분</strong> → 09:15 관람 시작 · 10:45까지 · 실질 관람 1시간 15분 · 무리하지 않기</div>
+              <div class="item-meta"><span class="item-tag">관광</span><span class="item-tag hot">오르막 주의</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day3-2">
+            <div class="item-time">11:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">말차 디저트 — 웨이팅 보고 결정</div>
+              <div class="item-desc"><strong>A</strong> 살롱 드 무게 / <strong>B</strong> 차센 CHASEN / <strong>C</strong> 기온 교센도 (전부 기온권) · 12:15까지<br>청수사 → 기온: <strong>택시 10분</strong> 또는 <strong>니넨자카·산넨자카 도보 20~25분</strong></div>
+              <div class="item-meta"><span class="item-tag">디저트</span><span class="item-tag must">3택 1</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day3-3">
+            <div class="item-time">12:30</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">점심 — 카나자와 마이몬즈시</div>
+              <div class="item-desc">교토역 <strong>포르타 지하</strong> · 기온 → 교토역 택시 15분 / 버스 20분 · 카운터석 요청하면 빨라요 · <strong>12:40까지 도착 목표</strong></div>
+              <div class="item-meta"><span class="item-tag">식사</span><span class="item-tag must">추천</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day3-4">
+            <div class="item-time">13:45</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">숙소에서 짐 회수</div>
+              <div class="item-desc">교토역 도보권 · 캐리어 픽업</div>
+              <div class="item-meta"><span class="item-tag">숙소</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day3-5">
+            <div class="item-time">14:15</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">오사카 우메다로 이동</div>
+              <div class="item-desc"><strong>JR 신쾌속 교토역 → 오사카역 29분</strong> · 14:45 도착 → 레스파이어 도보 5~8분 · 15:00 체크인에 딱 맞음</div>
+              <div class="item-meta"><span class="item-tag">이동</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day3-6">
+            <div class="item-time">15:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">호텔 한큐 레스파이어 오사카 체크인</div>
+              <div class="item-desc">Double Room (13~23층) · 1박 · 사전 결제 완료 (179,733원)</div>
+              <div class="item-meta"><span class="item-tag">숙소</span><span class="item-tag confirmed">예약확정</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day3-7">
+            <div class="item-time">15:30</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">우메다 쇼핑</div>
+              <div class="item-desc">① <strong>루쿠아 6층</strong>: 란다 구두 · 메종 드 플뢰르 가방<br>② <strong>구르니에 우메다점</strong> 크림 파이 🥧 · 17:30까지</div>
+              <div class="item-meta"><span class="item-tag shop">쇼핑</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day3-8">
+            <div class="item-time">17:30</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">호텔에서 휴식</div>
+              <div class="item-desc">19:00까지 · 저녁 전 체력 회복</div>
+              <div class="item-meta"><span class="item-tag">휴식</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day3-9">
+            <div class="item-time">19:30</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">야키니쿠 고리짱 (쿠로게와규 우 토탄토 하라미)</div>
+              <div class="item-desc">나카자키초역 · 우메다에서 <strong>지하철 다니마치선 1정거장(2분)</strong> 또는 도보 10~15분 · 좌석만 예약 · 체류 1시간 30분</div>
+              <div class="item-meta"><span class="item-tag">식사</span><span class="item-tag confirmed">#CJP2Q3RKGG</span></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="day4">
+    <div class="section-inner">
+      <div class="day" data-day-index="3">
+        <div class="day-header">
+          <div class="day-title-block">
+            <div class="day-eyebrow">DAY 04 · 09.07 MON</div>
+            <h3 class="day-title">우메다 쇼핑 → 신사이바시 덕질</h3>
+            <div class="day-subtitle">✅ 가장 안정적 · 흐림 10% · 33°/27° · 온야도 노노 난바</div>
+          </div>
+          <div class="day-progress">
+            <div class="day-progress-pct"><span class="pct-num">0</span>%</div>
+            <div class="day-progress-bar"><div class="day-progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="day-note confirmed"><strong>💡 헤어 세팅을 뺐으니</strong> 신사이바시에 <strong>2시간 가까이</strong> 쓸 수 있습니다. 포켓몬센터와 치이카와랜드가 붙어 있어 이동 손실도 없어요.<br>🕐 치이카와랜드 10:00~20:00 / 포켓몬센터 다이마루 본관 9F / 사료 츠지리 다이마루 본관 8F — <strong>전부 같은 건물권</strong>입니다.</div>
+        <div class="day-note"><strong>🧭 동선 점검 — 2곳 시간 조정했습니다.</strong><br>① 짐 보관(14:40) 직후 바로 신사이바시는 불가 — 온야도 노노 난바 → 다이마루 <strong>도보 10~12분</strong>이라 <strong>14:45 → 15:00으로 조정</strong>했습니다.<br>② 키타로우즈시는 <strong>체류 2시간</strong> 예약이라 19:30 시작 시 <strong>21:30 종료</strong> — 원래 21:00이던 대욕장과 겹칩니다. <strong>21:45로 조정</strong>했습니다 (온야도 노노 대욕장은 심야까지 운영).<br>③ 우메다 → 난바 이동(14:00~14:40)은 캐리어 2개 + 미도스지선 혼잡 감안 시 <strong>딱 맞는 수준</strong>이니 헵파이브에서 13:45에는 나오세요.</div>
+        <ul class="timeline">
+          <li class="item" data-item-id="day4-0">
+            <div class="item-time">10:15</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">레스파이어 체크아웃 (짐 보관)</div>
+              <div class="item-desc">프런트에 캐리어 맡기고 우메다 쇼핑 시작</div>
+              <div class="item-meta"><span class="item-tag">숙소</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day4-1">
+            <div class="item-time">11:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">동양정 — 130년 노포 함박</div>
+              <div class="item-desc">한큐 우메다 <strong>12F</strong> · 12:10까지</div>
+              <div class="item-meta"><span class="item-tag">식사</span><span class="item-tag must">추천</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day4-2">
+            <div class="item-time">12:20</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">잇신도 레드멜론 모찌 포장</div>
+              <div class="item-desc">한큐 백화점 <strong>B1</strong> · 같은 건물이라 이동 없음</div>
+              <div class="item-meta"><span class="item-tag shop">쇼핑</span><span class="item-tag">디저트</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day4-3">
+            <div class="item-time">12:45</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">헵파이브 3~4층</div>
+              <div class="item-desc">리즈리사 · 앙크루즈 · 13:45까지 · <strong>D3에서 이동됨</strong></div>
+              <div class="item-meta"><span class="item-tag shop">쇼핑</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day4-4">
+            <div class="item-time">14:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">짐 찾아 난바 이동 → 온야도 노노 짐 보관</div>
+              <div class="item-desc">레스파이어 짐 회수 → <strong>미도스지선 우메다→난바 8분</strong> → 난바역에서 숙소 도보 5~8분 · 14:40까지 · 캐리어 있어 여유 없음</div>
+              <div class="item-meta"><span class="item-tag">이동</span><span class="item-tag hot">빠듯</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day4-5">
+            <div class="item-time">15:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">신사이바시 덕질</div>
+              <div class="item-desc">숙소 → 다이마루 <strong>도보 10~12분</strong> (신사이바시스지 아케이드)<br><strong>다이마루 본관 9F</strong>: 포켓몬센터 오사카 DX<br><strong>파르코 6F</strong>: 치이카와 랜드 (연결통로로 바로) · 16:30까지</div>
+              <div class="item-meta"><span class="item-tag shop">쇼핑</span><span class="item-tag must">하이라이트</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day4-6">
+            <div class="item-time">16:45</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">하브스(HARBS) — 밀크레이프 & 사진</div>
+              <div class="item-desc">17:45까지 · 신사이바시 인근</div>
+              <div class="item-meta"><span class="item-tag">디저트</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day4-7">
+            <div class="item-time">18:15</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">온야도 노노 난바 정식 체크인 & 휴식</div>
+              <div class="item-desc">모더레이트 트윈룸 · 1박 · 사전 결제 완료 (242,337원)</div>
+              <div class="item-meta"><span class="item-tag">숙소</span><span class="item-tag confirmed">예약확정</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day4-8">
+            <div class="item-time">19:30</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">키타로우즈시 도구야스지 (스시 로바타)</div>
+              <div class="item-desc">도구야스지 상점가 · 숙소에서 <strong>도보 5~10분</strong> · 이자카야 · 스시 · 로바타야키 · 좌석만 예약 · <strong>체류 2시간 → 21:30 종료</strong></div>
+              <div class="item-meta"><span class="item-tag">식사</span><span class="item-tag confirmed">#4GQTAAV3ZS</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day4-9">
+            <div class="item-time">21:45</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">대욕장 · 족욕</div>
+              <div class="item-desc">저녁 식사 후로 이동됨 · <strong>식당 체류 2시간(21:30 종료) 반영해 21:00 → 21:45로 조정</strong> · 마지막 밤 피로 풀기</div>
+              <div class="item-meta"><span class="item-tag">온천</span><span class="item-tag must">시간 조정</span></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="day5">
+    <div class="section-inner">
+      <div class="day" data-day-index="4">
+        <div class="day-header">
+          <div class="day-title-block">
+            <div class="day-eyebrow">DAY 05 · 09.08 TUE</div>
+            <h3 class="day-title">도톤보리 → 귀국</h3>
+            <div class="day-subtitle">🌥️ 흐림 60% · 32°/27° · 라피트 → KIX 19:45</div>
+          </div>
+          <div class="day-progress">
+            <div class="day-progress-pct"><span class="pct-num">0</span>%</div>
+            <div class="day-progress-bar"><div class="day-progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="day-note"><strong>⏰ 츠지리 웨이팅이 30~60분 붙습니다.</strong> 원래 14:00이던 걸 <strong>1시간 당겨 13:00</strong>으로 옮겨 공항 도착 버퍼를 <strong>3시간 30분</strong> 확보했어요. 파르페가 늦어져도 비행기는 안전합니다. 코가류 타코야키는 D4에서 <strong>오늘 도톤보리 산책 중</strong>으로 이동됐습니다.</div>
+        <div class="day-note confirmed"><strong>🧭 동선 점검 — 오전은 완벽, 오후만 주의.</strong> 숙소·돈키호테·쿠시카츠·글리코상·코가류가 <strong>전부 도보 10분권</strong>이라 오전은 손실이 없습니다. 다만 도톤보리 → 다이마루 신사이바시가 <strong>도보 7~10분</strong>이라 12:55 종료 후 13:00 착석은 불가 — <strong>13:10 도착</strong>이 현실적이고, 웨이팅 45분을 더하면 파르페 종료가 <strong>14:25~14:30</strong>이 됩니다.<br>그래도 <strong>라피트 15:30은 안전</strong>합니다(회수·이동 45분 확보). 웨이팅이 60분을 넘기면 미련 없이 <strong>16:00 라피트</strong>로 바꾸세요 — KIX 16:38 도착, 출발까지 여전히 <strong>3시간 7분</strong> 남습니다.</div>
+        <ul class="timeline">
+          <li class="item" data-item-id="day5-0">
+            <div class="item-time">09:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">도톤보리 돈키호테</div>
+              <div class="item-desc">숙소에서 <strong>도보 8~10분</strong> · 24시간 영업이라 09시가 가장 한산 · 털고 <strong>캐리어 테트리스</strong> · 10:00까지</div>
+              <div class="item-meta"><span class="item-tag shop">쇼핑</span><span class="item-tag must">마지막 쇼핑</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day5-1">
+            <div class="item-time">10:30</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">온야도 노노 체크아웃 (짐 보관)</div>
+              <div class="item-desc">캐리어는 프런트에 · 오후에 회수</div>
+              <div class="item-meta"><span class="item-tag">숙소</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day5-2">
+            <div class="item-time">11:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">쿠시카츠 다루마 or 사쿠라</div>
+              <div class="item-desc">도톤보리점 · 숙소에서 <strong>도보 8~10분</strong> · <strong>11:00 오픈</strong>이라 대기 없음 · 12:00까지 · 소스 두 번 찍기 금지 🚫</div>
+              <div class="item-meta"><span class="item-tag">식사</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day5-3">
+            <div class="item-time">12:15</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">도톤보리 산책 · 글리코상 인증샷 · 코가류 타코야키</div>
+              <div class="item-desc">쿠시카츠 바로 옆 강변 · <strong>도보 3분권</strong> · 12:55까지 · <strong>D4에서 이동됨</strong></div>
+              <div class="item-meta"><span class="item-tag">관광</span><span class="item-tag">식사</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day5-4">
+            <div class="item-time">13:10</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">사료 츠지리 — 우지 말차 파르페</div>
+              <div class="item-desc">다이마루 신사이바시 <strong>본관 8F</strong> · 도톤보리에서 <strong>도보 7~10분</strong> (13:00 → 13:10 조정)<br><strong>웨이팅 30~60분</strong> 감안 시 종료 14:25~14:30 — 라피트 15:30은 안전</div>
+              <div class="item-meta"><span class="item-tag">디저트</span><span class="item-tag hot">웨이팅</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day5-5">
+            <div class="item-time">14:30</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">난바 복귀 · 캐리어 회수</div>
+              <div class="item-desc">다이마루 → 온야도 노노 난바 <strong>도보 10~12분</strong> · 프런트 수령 10분 · 14:55까지</div>
+              <div class="item-meta"><span class="item-tag">이동</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day5-6">
+            <div class="item-time">15:05</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">난카이 난바역 도착</div>
+              <div class="item-desc">숙소에서 <strong>도보 5~8분</strong> · 라피트 승강장 확인 · 지정석 발권/QR 확인</div>
+              <div class="item-meta"><span class="item-tag">이동</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day5-7">
+            <div class="item-time">15:30</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">라피트 탑승 → 간사이공항</div>
+              <div class="item-desc"><strong>38분 · 16:08 KIX 도착</strong> · 출발까지 3시간 37분 버퍼<br>웨이팅 지연 시 → <strong>16:00 편</strong> (KIX 16:38, 버퍼 3시간 7분)도 안전</div>
+              <div class="item-meta"><span class="item-tag">이동</span><span class="item-tag must">좌석 지정</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day5-8">
+            <div class="item-time">17:00</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">면세구역 라멘 & 면세 쇼핑</div>
+              <div class="item-desc">마지막 일본 식사 · 남은 엔화 털기</div>
+              <div class="item-meta"><span class="item-tag">식사</span><span class="item-tag shop">쇼핑</span></div>
+            </div>
+          </li>
+          <li class="item" data-item-id="day5-9">
+            <div class="item-time">19:45</div>
+            <label class="item-check"><input type="checkbox" /><span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span></label>
+            <div class="item-content">
+              <div class="item-title">OZ113 간사이(KIX) → 인천(ICN)</div>
+              <div class="item-desc">아시아나 · 1시간 55분 비행 · <strong>21:40 인천 도착</strong></div>
+              <div class="item-meta"><span class="item-tag">항공</span><span class="item-tag confirmed">발권완료</span></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="cta-strip">
+  <h2 class="cta-title">알차게, 그러나 무리 없이.</h2>
+  <p class="cta-sub">간사이 4박 5일. 발걸음은 가볍게, 캐리어는 무겁게.</p>
+  <a href="#overview" class="btn btn-primary">처음으로 ↑</a>
+</section>
+
+<footer>Designed with care · 간사이 쇼핑 여행 ©</footer>
+
+<script>
+  /* === 타임라인 체크박스 진행률 (localStorage) === */
+  const TIMELINE_KEY = 'kansai-timeline-v1';
+
+  function updateProgress() {
+    const allBoxes = document.querySelectorAll('.timeline input[type="checkbox"]');
+    const checkedCount = document.querySelectorAll('.timeline input[type="checkbox"]:checked').length;
+    const totalPct = allBoxes.length ? Math.round(checkedCount / allBoxes.length * 100) : 0;
+    const navPctEl = document.getElementById('navPct');
+    const totalPctEl = document.getElementById('totalPct');
+    const totalItemsEl = document.getElementById('totalItems');
+    if (navPctEl) navPctEl.textContent = totalPct + '%';
+    if (totalPctEl) totalPctEl.innerHTML = totalPct + '<span style="font-size:0.5em;">%</span>';
+    if (totalItemsEl) totalItemsEl.textContent = allBoxes.length;
+    document.querySelectorAll('.day').forEach(dayEl => {
+      const boxes = dayEl.querySelectorAll('.timeline input[type="checkbox"]');
+      const done = dayEl.querySelectorAll('.timeline input[type="checkbox"]:checked').length;
+      const pct = boxes.length ? Math.round(done / boxes.length * 100) : 0;
+      const pctNum = dayEl.querySelector('.pct-num');
+      const pctFill = dayEl.querySelector('.day-progress-fill');
+      if (pctNum) pctNum.textContent = pct;
+      if (pctFill) pctFill.style.width = pct + '%';
+    });
+  }
+
+  function saveTimelineState() {
+    const state = {};
+    document.querySelectorAll('.timeline .item').forEach(item => {
+      const cb = item.querySelector('input[type="checkbox"]');
+      if (cb && cb.checked) state[item.dataset.itemId] = true;
+    });
+    try { localStorage.setItem(TIMELINE_KEY, JSON.stringify(state)); } catch(_) {}
+  }
+
+  function loadTimelineState() {
+    let state = null;
+    try {
+      const raw = localStorage.getItem(TIMELINE_KEY);
+      if (raw) state = JSON.parse(raw);
+    } catch(_) {}
+    if (state) {
+      document.querySelectorAll('.timeline .item').forEach(item => {
+        if (state[item.dataset.itemId]) {
+          const cb = item.querySelector('input[type="checkbox"]');
+          if (cb) { cb.checked = true; item.classList.add('checked'); }
+        }
+      });
+    }
+    updateProgress();
+  }
+
+  document.querySelectorAll('.timeline input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', e => {
+      const item = e.target.closest('.item');
+      if (item) item.classList.toggle('checked', e.target.checked);
+      updateProgress();
+      saveTimelineState();
+    });
+  });
+
+  loadTimelineState();
+
+  /* === Checklist (준비물 + 출국 전 + D1-D5 메모) — 서버리스 KV 저장 === */
+  const STORAGE_KEY = 'kansai-checklist-v1';
+  const API_URL = '/api/checklist';
+  const SAVE_DEBOUNCE_MS = 1000;
+  const DAY_IDS = ['day1','day2','day3','day4','day5'];
+  let packingState = { hyungin: [], junga: [] };
+  let prepState = [];
+  let dayNotesState = { day1: [], day2: [], day3: [], day4: [], day5: [] };
+  let lastSyncedAt = null;
+  let lastLocalEditAt = null;
+  let saveTimer = null;
+  let inFlight = false;
+  let pendingFlush = false;
+  let dragSrc = null;
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function normalizePack(src) {
+    src = src || {};
+    return {
+      hyungin: Array.isArray(src.hyungin) ? src.hyungin.filter(Boolean) : [],
+      junga: Array.isArray(src.junga) ? src.junga.filter(Boolean) : []
+    };
+  }
+  function normalizePrep(arr) {
+    return Array.isArray(arr) ? arr.filter(Boolean) : [];
+  }
+  function normalizeDayNotes(src) {
+    src = src && typeof src === 'object' ? src : {};
+    const out = {};
+    for (const id of DAY_IDS) {
+      out[id] = Array.isArray(src[id]) ? src[id].filter(Boolean) : [];
+    }
+    return out;
+  }
+
+  function statusText(status, ts) {
+    switch (status) {
+      case 'loading': return '로딩 중...';
+      case 'saving':  return '저장 중...';
+      case 'saved':   return ts ? '저장됨 · ' + formatRelative(ts) : '저장됨';
+      case 'error':   return '저장 실패 (다음 변경 시 재시도)';
+      case 'offline': return '오프라인 — 이 기기에만 저장됨';
+      default: return '';
+    }
+  }
+  function setStatus(status, ts) {
+    const txt = statusText(status, ts);
+    ['packing-status', 'prep-status'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = txt;
+      el.dataset.status = status;
+      if (ts) el.dataset.ts = ts;
+    });
+    document.querySelectorAll('.day-notes-status').forEach(el => {
+      el.textContent = txt;
+      el.dataset.status = status;
+      if (ts) el.dataset.ts = ts;
+    });
+  }
+  function formatRelative(ts) {
+    const d = new Date(ts); if (isNaN(d)) return '';
+    const diff = Date.now() - d.getTime();
+    if (diff < 5000)    return '방금';
+    if (diff < 60000)   return Math.floor(diff/1000) + '초 전';
+    if (diff < 3600000) return Math.floor(diff/60000) + '분 전';
+    if (diff < 86400000) return Math.floor(diff/3600000) + '시간 전';
+    return d.toLocaleString('ko-KR', { month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit' });
+  }
+  setInterval(() => {
+    document.querySelectorAll('#packing-status, #prep-status, .day-notes-status').forEach(el => {
+      if (el.dataset.status === 'saved' && el.dataset.ts) {
+        el.textContent = statusText('saved', el.dataset.ts);
+      }
+    });
+  }, 60000);
+
+  function writeLocal() {
+    const payload = {
+      version: 1,
+      updatedAt: lastLocalEditAt || new Date().toISOString(),
+      packing: packingState,
+      prep: prepState,
+      dayNotes: dayNotesState
+    };
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(payload)); } catch(_) {}
+  }
+
+  async function loadChecklist() {
+    // 1) localStorage 즉시 렌더
+    let local = null;
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) local = JSON.parse(raw);
+    } catch(_) {}
+    if (local) {
+      packingState = normalizePack(local.packing);
+      prepState = normalizePrep(local.prep);
+      dayNotesState = normalizeDayNotes(local.dayNotes);
+      lastLocalEditAt = local.updatedAt || null;
+      renderAll();
+    }
+
+    // 2) 서버 fetch
+    setStatus('loading');
+    let remote = null;
+    try {
+      const res = await fetch(API_URL, { cache: 'no-store' });
+      if (res.ok) remote = await res.json();
+    } catch(_) {}
+
+    if (!remote) {
+      setStatus(navigator.onLine ? 'error' : 'offline');
+      return;
+    }
+
+    // 3) 충돌 해소 — 로컬이 더 최신이면 밀어올리고, 아니면 서버본 채택
+    const remoteTs = remote.updatedAt ? Date.parse(remote.updatedAt) : 0;
+    const localTs  = local && local.updatedAt ? Date.parse(local.updatedAt) : 0;
+    const localHas = local && (
+      (local.packing && ((local.packing.hyungin || []).length || (local.packing.junga || []).length)) ||
+      (local.prep || []).length ||
+      (local.dayNotes && Object.values(local.dayNotes).some(a => Array.isArray(a) && a.length > 0))
+    );
+
+    if (localHas && localTs > remoteTs) {
+      flushSave(true);
+    } else {
+      packingState = normalizePack(remote.packing);
+      prepState = normalizePrep(remote.prep);
+      dayNotesState = normalizeDayNotes(remote.dayNotes);
+      lastSyncedAt = remote.updatedAt;
+      lastLocalEditAt = remote.updatedAt;
+      writeLocal();
+      renderAll();
+      if (remote.updatedAt) setStatus('saved', remote.updatedAt);
+      else setStatus('idle');
+    }
+  }
+
+  function scheduleSave() {
+    lastLocalEditAt = new Date().toISOString();
+    writeLocal();
+    if (saveTimer) clearTimeout(saveTimer);
+    setStatus('saving');
+    saveTimer = setTimeout(() => flushSave(false), SAVE_DEBOUNCE_MS);
+  }
+
+  async function flushSave(immediate) {
+    if (saveTimer) { clearTimeout(saveTimer); saveTimer = null; }
+    if (inFlight) { pendingFlush = true; return; }
+    inFlight = true;
+    setStatus('saving');
+    try {
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ packing: packingState, prep: prepState, dayNotes: dayNotesState })
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const saved = await res.json();
+      lastSyncedAt = saved.updatedAt;
+      lastLocalEditAt = saved.updatedAt;
+      writeLocal();
+      setStatus('saved', saved.updatedAt);
+    } catch(e) {
+      setStatus(navigator.onLine ? 'error' : 'offline');
+    } finally {
+      inFlight = false;
+      if (pendingFlush) { pendingFlush = false; flushSave(false); }
+    }
+  }
+
+  window.addEventListener('online', () => {
+    const els = document.querySelectorAll('.packing-status');
+    let needsRetry = false;
+    els.forEach(el => { if (el.dataset.status === 'offline' || el.dataset.status === 'error') needsRetry = true; });
+    if (needsRetry) flushSave(true);
+  });
+
+  /* ---- Render: 준비물 (packing) ---- */
+  function renderPacking() {
+    ['hyungin','junga'].forEach(who => {
+      const list = document.getElementById('packing-list-' + who);
+      if (!list) return;
+      list.innerHTML = '';
+      const arr = packingState[who];
+      if (arr.length === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'packing-empty';
+        empty.textContent = '아직 추가된 항목이 없습니다';
+        list.appendChild(empty);
+      } else {
+        arr.forEach((item, idx) => {
+          const card = document.createElement('div');
+          card.className = 'pack-card' + (item.checked ? ' checked' : '');
+          card.draggable = true;
+          card.dataset.kind = 'pack';
+          card.dataset.who = who;
+          card.dataset.idx = idx;
+          card.innerHTML =
+            '<span class="pack-handle" aria-label="순서 변경">⋮⋮</span>' +
+            '<label class="item-check" onclick="event.stopPropagation()">' +
+              '<input type="checkbox"' + (item.checked ? ' checked' : '') + ' />' +
+              '<span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span>' +
+            '</label>' +
+            '<span class="pack-label">' + escapeHtml(item.label) + '</span>' +
+            '<button class="pack-del" aria-label="삭제" type="button">×</button>';
+          attachPackEvents(card);
+          list.appendChild(card);
+        });
+      }
+      const done = arr.filter(i => i.checked).length;
+      const el = document.getElementById('packing-progress-' + who);
+      if (el) el.textContent = done + '/' + arr.length;
+    });
+  }
+  function attachPackEvents(card) {
+    const cb = card.querySelector('input[type=checkbox]');
+    cb.addEventListener('change', (e) => {
+      const who = card.dataset.who;
+      const idx = +card.dataset.idx;
+      packingState[who][idx].checked = e.target.checked;
+      card.classList.toggle('checked', e.target.checked);
+      const el = document.getElementById('packing-progress-' + who);
+      if (el) {
+        const arr = packingState[who];
+        el.textContent = arr.filter(i => i.checked).length + '/' + arr.length;
+      }
+      scheduleSave();
+    });
+    card.querySelector('.pack-del').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const who = card.dataset.who;
+      const idx = +card.dataset.idx;
+      packingState[who].splice(idx, 1);
+      scheduleSave();
+      renderPacking();
+    });
+    card.addEventListener('dragstart', (e) => {
+      dragSrc = card;
+      card.classList.add('dragging');
+      try { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', card.dataset.idx); } catch(_) {}
+    });
+    card.addEventListener('dragend', () => {
+      card.classList.remove('dragging');
+      document.querySelectorAll('.pack-card.drag-over').forEach(c => c.classList.remove('drag-over'));
+      dragSrc = null;
+    });
+    card.addEventListener('dragover', (e) => {
+      if (!dragSrc || dragSrc === card) return;
+      if (dragSrc.dataset.kind !== 'pack' || dragSrc.dataset.who !== card.dataset.who) return;
+      e.preventDefault();
+      card.classList.add('drag-over');
+    });
+    card.addEventListener('dragleave', () => card.classList.remove('drag-over'));
+    card.addEventListener('drop', (e) => {
+      e.preventDefault();
+      card.classList.remove('drag-over');
+      if (!dragSrc || dragSrc === card) return;
+      if (dragSrc.dataset.kind !== 'pack' || dragSrc.dataset.who !== card.dataset.who) return;
+      const who = card.dataset.who;
+      const fromIdx = +dragSrc.dataset.idx;
+      const toIdx = +card.dataset.idx;
+      const arr = packingState[who];
+      const [moved] = arr.splice(fromIdx, 1);
+      arr.splice(toIdx, 0, moved);
+      scheduleSave();
+      renderPacking();
+    });
+  }
+  function addPackingItem(who, label) {
+    const trimmed = label.trim();
+    if (!trimmed) return;
+    packingState[who].push({
+      id: who + '-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,6),
+      label: trimmed.slice(0, 120),
+      checked: false
+    });
+    scheduleSave();
+    renderPacking();
+  }
+
+  /* ---- Render: 출국 전 체크리스트 (prep) ---- */
+  function renderPrep() {
+    const list = document.getElementById('prep-list');
+    if (!list) return;
+    list.innerHTML = '';
+    if (prepState.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'packing-empty';
+      empty.style.margin = '4px 0';
+      empty.textContent = '아직 추가된 항목이 없습니다';
+      list.appendChild(empty);
+    } else {
+      prepState.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'check-item prep-card' + (item.checked ? ' checked' : '');
+        card.draggable = true;
+        card.dataset.kind = 'prep';
+        card.dataset.idx = idx;
+        const detail = item.detail ? '<div class="check-detail">' + escapeHtml(item.detail) + '</div>' : '';
+        card.innerHTML =
+          '<span class="prep-handle" aria-label="순서 변경">⋮⋮</span>' +
+          '<label class="item-check" onclick="event.stopPropagation()">' +
+            '<input type="checkbox"' + (item.checked ? ' checked' : '') + ' />' +
+            '<span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span>' +
+          '</label>' +
+          '<div class="check-content">' +
+            '<div class="check-label">' + escapeHtml(item.label) + '</div>' +
+            detail +
+          '</div>' +
+          '<button class="prep-del" aria-label="삭제" type="button">×</button>';
+        attachPrepEvents(card);
+        list.appendChild(card);
+      });
+    }
+    const done = prepState.filter(i => i.checked).length;
+    const cnt = document.getElementById('prep-count');
+    if (cnt) cnt.textContent = done + '/' + prepState.length;
+  }
+  function attachPrepEvents(card) {
+    const cb = card.querySelector('input[type=checkbox]');
+    cb.addEventListener('change', (e) => {
+      const idx = +card.dataset.idx;
+      prepState[idx].checked = e.target.checked;
+      card.classList.toggle('checked', e.target.checked);
+      const done = prepState.filter(i => i.checked).length;
+      const cnt = document.getElementById('prep-count');
+      if (cnt) cnt.textContent = done + '/' + prepState.length;
+      scheduleSave();
+    });
+    card.querySelector('.prep-del').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = +card.dataset.idx;
+      prepState.splice(idx, 1);
+      scheduleSave();
+      renderPrep();
+    });
+    card.addEventListener('dragstart', (e) => {
+      dragSrc = card;
+      card.classList.add('dragging');
+      try { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', card.dataset.idx); } catch(_) {}
+    });
+    card.addEventListener('dragend', () => {
+      card.classList.remove('dragging');
+      document.querySelectorAll('.prep-card.drag-over').forEach(c => c.classList.remove('drag-over'));
+      dragSrc = null;
+    });
+    card.addEventListener('dragover', (e) => {
+      if (!dragSrc || dragSrc === card) return;
+      if (dragSrc.dataset.kind !== 'prep') return;
+      e.preventDefault();
+      card.classList.add('drag-over');
+    });
+    card.addEventListener('dragleave', () => card.classList.remove('drag-over'));
+    card.addEventListener('drop', (e) => {
+      e.preventDefault();
+      card.classList.remove('drag-over');
+      if (!dragSrc || dragSrc === card) return;
+      if (dragSrc.dataset.kind !== 'prep') return;
+      const fromIdx = +dragSrc.dataset.idx;
+      const toIdx = +card.dataset.idx;
+      const [moved] = prepState.splice(fromIdx, 1);
+      prepState.splice(toIdx, 0, moved);
+      scheduleSave();
+      renderPrep();
+    });
+  }
+  function addPrepItem(label) {
+    const trimmed = label.trim();
+    if (!trimmed) return;
+    prepState.push({
+      id: 'p-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,6),
+      label: trimmed.slice(0, 120),
+      detail: '',
+      checked: false
+    });
+    scheduleSave();
+    renderPrep();
+  }
+
+  function renderAll() { renderPacking(); renderPrep(); renderAllDayNotes(); }
+
+  /* ---- Render: D1-D5 메모 (day notes) ---- */
+  function renderDayNotes(dayId) {
+    const list = document.querySelector('.day-notes-list[data-day-id="' + dayId + '"]');
+    if (!list) return;
+    list.innerHTML = '';
+    const arr = dayNotesState[dayId] || [];
+    if (arr.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'day-notes-empty';
+      empty.textContent = '메모 없음';
+      list.appendChild(empty);
+    } else {
+      arr.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'day-note-card' + (item.checked ? ' checked' : '');
+        card.draggable = true;
+        card.dataset.kind = 'note';
+        card.dataset.dayId = dayId;
+        card.dataset.idx = idx;
+        card.innerHTML =
+          '<span class="note-handle" aria-label="순서 변경">⋮⋮</span>' +
+          '<label class="item-check" onclick="event.stopPropagation()">' +
+            '<input type="checkbox"' + (item.checked ? ' checked' : '') + ' />' +
+            '<span class="box"><svg viewBox="0 0 24 24"><polyline points="5,12 10,17 19,7"/></svg></span>' +
+          '</label>' +
+          '<span class="note-label">' + escapeHtml(item.label) + '</span>' +
+          '<button class="note-del" aria-label="삭제" type="button">×</button>';
+        attachDayNoteEvents(card);
+        list.appendChild(card);
+      });
+    }
+    const done = arr.filter(i => i.checked).length;
+    const cnt = document.querySelector('.day-notes-count[data-day-id="' + dayId + '"]');
+    if (cnt) cnt.textContent = done + '/' + arr.length;
+  }
+  function attachDayNoteEvents(card) {
+    const dayId = card.dataset.dayId;
+    const cb = card.querySelector('input[type=checkbox]');
+    cb.addEventListener('change', (e) => {
+      const idx = +card.dataset.idx;
+      dayNotesState[dayId][idx].checked = e.target.checked;
+      card.classList.toggle('checked', e.target.checked);
+      const arr = dayNotesState[dayId];
+      const cnt = document.querySelector('.day-notes-count[data-day-id="' + dayId + '"]');
+      if (cnt) cnt.textContent = arr.filter(i => i.checked).length + '/' + arr.length;
+      scheduleSave();
+    });
+    card.querySelector('.note-del').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = +card.dataset.idx;
+      dayNotesState[dayId].splice(idx, 1);
+      scheduleSave();
+      renderDayNotes(dayId);
+    });
+    card.addEventListener('dragstart', (e) => {
+      dragSrc = card;
+      card.classList.add('dragging');
+      try { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', card.dataset.idx); } catch(_) {}
+    });
+    card.addEventListener('dragend', () => {
+      card.classList.remove('dragging');
+      document.querySelectorAll('.day-note-card.drag-over').forEach(c => c.classList.remove('drag-over'));
+      dragSrc = null;
+    });
+    card.addEventListener('dragover', (e) => {
+      if (!dragSrc || dragSrc === card) return;
+      if (dragSrc.dataset.kind !== 'note' || dragSrc.dataset.dayId !== card.dataset.dayId) return;
+      e.preventDefault();
+      card.classList.add('drag-over');
+    });
+    card.addEventListener('dragleave', () => card.classList.remove('drag-over'));
+    card.addEventListener('drop', (e) => {
+      e.preventDefault();
+      card.classList.remove('drag-over');
+      if (!dragSrc || dragSrc === card) return;
+      if (dragSrc.dataset.kind !== 'note' || dragSrc.dataset.dayId !== card.dataset.dayId) return;
+      const fromIdx = +dragSrc.dataset.idx;
+      const toIdx = +card.dataset.idx;
+      const arr = dayNotesState[dayId];
+      const [moved] = arr.splice(fromIdx, 1);
+      arr.splice(toIdx, 0, moved);
+      scheduleSave();
+      renderDayNotes(dayId);
+    });
+  }
+  function addDayNote(dayId, label) {
+    const trimmed = label.trim();
+    if (!trimmed) return;
+    if (!dayNotesState[dayId]) dayNotesState[dayId] = [];
+    dayNotesState[dayId].push({
+      id: 'n-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,6),
+      label: trimmed.slice(0, 120),
+      checked: false
+    });
+    scheduleSave();
+    renderDayNotes(dayId);
+  }
+  function renderAllDayNotes() {
+    DAY_IDS.forEach(id => renderDayNotes(id));
+  }
+  function injectDayNotesContainers() {
+    DAY_IDS.forEach(id => {
+      const section = document.getElementById(id);
+      if (!section) return;
+      const dayCard = section.querySelector('.day');
+      if (!dayCard) return;
+      if (dayCard.querySelector('.day-notes-block')) return;
+      const block = document.createElement('div');
+      block.className = 'day-notes-block';
+      block.dataset.dayId = id;
+      block.innerHTML =
+        '<div class="day-notes-head">' +
+          '<span class="day-notes-title">📝 메모</span>' +
+          '<span class="day-notes-count" data-day-id="' + id + '">0/0</span>' +
+          '<span class="packing-status day-notes-status" data-status="loading"></span>' +
+        '</div>' +
+        '<div class="day-notes-list" data-day-id="' + id + '"></div>' +
+        '<form class="day-notes-add-form" data-day-id="' + id + '">' +
+          '<input type="text" placeholder="이 날 메모 추가..." maxlength="120" autocomplete="off" />' +
+          '<button type="submit" aria-label="추가">+</button>' +
+        '</form>';
+      dayCard.appendChild(block);
+      block.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = block.querySelector('input');
+        addDayNote(id, input.value);
+        input.value = '';
+        input.focus();
+      });
+    });
+  }
+
+  async function manualRefresh() {
+    setStatus('loading');
+    try {
+      const res = await fetch(API_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const remote = await res.json();
+      if (!remote) throw new Error('empty');
+      packingState = normalizePack(remote.packing);
+      prepState = normalizePrep(remote.prep);
+      dayNotesState = normalizeDayNotes(remote.dayNotes);
+      lastSyncedAt = remote.updatedAt;
+      lastLocalEditAt = remote.updatedAt;
+      writeLocal();
+      renderAll();
+      if (remote.updatedAt) setStatus('saved', remote.updatedAt);
+      else setStatus('idle');
+    } catch(e) {
+      setStatus(navigator.onLine ? 'error' : 'offline');
+      alert('서버에서 데이터를 가져오지 못했습니다.\n' + e.message);
+    }
+  }
+
+  /* ---- Wire up forms & buttons ---- */
+  document.querySelectorAll('.packing-add-form').forEach(form => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = form.querySelector('input');
+      addPackingItem(form.dataset.who, input.value);
+      input.value = '';
+      input.focus();
+    });
+  });
+  const prepAddForm = document.getElementById('prep-add');
+  if (prepAddForm) {
+    prepAddForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = prepAddForm.querySelector('input');
+      addPrepItem(input.value);
+      input.value = '';
+      input.focus();
+    });
+  }
+  const syncBtn = document.getElementById('packing-sync');
+  if (syncBtn) syncBtn.addEventListener('click', manualRefresh);
+
+  /* ---- Mobile nav toggle ---- */
+  (function setupMobileNav() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navEl = document.querySelector('.nav');
+    if (!navToggle || !navEl) return;
+    function closeNav() {
+      navEl.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+    navToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = navEl.classList.toggle('nav-open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    navEl.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', closeNav);
+    });
+    document.addEventListener('click', (e) => {
+      if (!navEl.contains(e.target)) closeNav();
+    });
+  })();
+
+  injectDayNotesContainers();
+  loadChecklist();
+</script>
+
+</body>
+</html>

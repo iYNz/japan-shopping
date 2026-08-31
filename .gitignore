@@ -1,0 +1,21 @@
+# Claude Code / bkit local state
+.claude/
+.bkit/
+
+# Local reference / scratch (개인 메모)
+ref/
+source/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Node
+node_modules/
+package-lock.json
+.netlify/

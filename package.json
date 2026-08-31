@@ -1,0 +1,7 @@
+{
+  "name": "japan-shopping",
+  "version": "1.0.0",
+  "private": true,
+  "engines": { "node": ">=20" },
+  "dependencies": { "@netlify/blobs": "^9.1.2" }
+}
