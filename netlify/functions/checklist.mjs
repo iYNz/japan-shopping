@@ -12,11 +12,11 @@ const DAY_IDS = ["day1","day2","day3","day4","day5"];
 
 const DEFAULT_PREP = [
   { id: "prep-default-1",  label: "하루카 QR 티켓 캡처",          detail: "예약 완료 #BSQ675585 · 2인 ₩37,200 · E-티켓(QR 입장) · 9.4 14:16 KIX → 15:35 교토역 · 오프라인 대비 스크린샷", checked: true },
-  { id: "prep-default-2",  label: "라피트 좌석 지정 예약",        detail: "9.8 (화) 15:30 난카이 난바 → 16:08 KIX · 전 좌석 지정제 · 츠지리 웨이팅 대비 16:00 편도 검토", checked: false },
+  { id: "prep-default-2",  label: "라피트 QR/바코드 캡처",        detail: "좌석 지정 완료 KLOOK-20260831-3WGG · β51호 난바 15:35 → KIX 16:12 · 01호차 27·28번 · 이용개시 전 앱에서 편 변경 가능", checked: true },
   { id: "prep-default-3",  label: "Visit Japan Web 사전 등록",    detail: "입국 속도를 좌우 · 2인 각각 등록 · QR 캡처해두기", checked: false },
   { id: "prep-default-4",  label: "인천공항 예약주차",            detail: "출차 3일 전까지 · 5일 45,000원 (감면 대상이면 22,500원)", checked: false },
-  { id: "prep-default-5",  label: "기온탄토 예약 가능 여부 확인",  detail: "1일차 9.4 (금) 18:00 · 비 예보 70%라 현장 대기 부담", checked: false },
-  { id: "prep-default-6",  label: "타이쇼 하나나 예약 확인",      detail: "2일차 9.5 (토) 10:30 · 예약 불가면 오픈런 줄서기", checked: false },
+  { id: "prep-default-5",  label: "기온탄토 디너 오픈 시각 확인",  detail: "오픈런 확정 (예약 X) · 1일차 9.4 (금) 17:30 목표 · 구글맵/현장 확인 후 10~15분 전 도착 · 오픈이 18:00이면 뒤 일정 30분씩 밀기", checked: false },
+  { id: "prep-default-6",  label: "타이쇼 하나나 오픈 시각 확인",  detail: "오픈런 확정 (예약 X) · 2일차 9.5 (토) 11:00 오픈 기준 10:20 줄서기 · 토요일이라 일찍", checked: false },
   { id: "prep-default-7",  label: "접이식 우산 2개",              detail: "1·3·5일차 강수 60~70% · 캐리어에 미리 넣기", checked: false },
   { id: "prep-default-8",  label: "출발 3일 전 예보 재확인",       detail: "9월 초는 태풍 시즌 · 항공/기차 결항 여부 체크", checked: false },
   { id: "prep-default-9",  label: "엔화 환전",                    detail: "타코야키 · 쿠시카츠 · 가챠 등 현금 전용 매장 대비", checked: false },
