@@ -79,6 +79,8 @@ const DEFAULT_PREP = [
   { id: "prep-default-4",  label: "공항 01·02번 셔틀 막차 시각 확인", detail: "귀국이 9.8 밤 22:30 · T2↔장기주차장 02번 직통 · 막차 끊기면 택시 이동 (출국 전에 반드시 확인)", checked: false },
   { id: "prep-default-4d", label: "주차 정산용 신용카드 지참",     detail: "T1 장기주차장 무인정산기 카드 결제 · 4박 5일 예상 45,000원 안팎", checked: false },
   { id: "prep-default-4e", label: "하이패스 카드 탈거 여부 결정",   detail: "장기주차 5일간 차량 방치 · 탈거 권장", checked: false },
+  { id: "prep-default-4f", label: "전날(9/3) 차량 미리 이동 검토",   detail: "영등포농협본점 → 인헌12나길로 9/3 밤에 옮겨두면 당일 택시 왕복 55분 절약 → 기상 04:00 대신 05:00 가능", checked: false },
+  { id: "prep-default-4g", label: "9/4 새벽 택시 앱 예약",          detail: "05:00 인헌12나길 → 영등포농협본점 · 지하철 첫차(05:30경) 전이라 택시 필수 · 전날 밤 예약 걸어두기", checked: false },
   { id: "prep-default-4b", label: "유심/이심 준비",               detail: "일본 eSIM 또는 로밍 · 2인 각각 · 출발 전 개통 확인", checked: false },
   { id: "prep-default-4c", label: "여행자 보험 가입",             detail: "일본 커버 · 9월 초 태풍 시즌이라 항공 지연/결항 보상 항목 확인", checked: false },
   { id: "prep-default-5",  label: "기온탄토 디너 오픈 시각 확인",  detail: "오픈런 확정 (예약 X) · 1일차 9.4 (금) 17:30 목표 · 구글맵/현장 확인 후 10~15분 전 도착 · 오픈이 18:00이면 뒤 일정 30분씩 밀기", checked: false },
